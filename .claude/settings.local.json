@@ -24,7 +24,8 @@
       "Bash(npm run validate:*)",
       "Bash(npm run dev:deck:*)",
       "Bash(npm run dev:index:*)",
-      "Bash(npx slidev:*)"
+      "Bash(npx slidev:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
