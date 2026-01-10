@@ -25,9 +25,13 @@
       "Bash(npm run dev:deck:*)",
       "Bash(npm run dev:index:*)",
       "Bash(npx slidev:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
+  },
+  "enabledPlugins": {
+    "wwt-claude-skills@wwt-claude-skills": true
   }
 }
