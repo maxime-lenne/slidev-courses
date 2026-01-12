@@ -11,6 +11,7 @@
     "build:all": "npm run generate-index && npm run build:decks && npm run build:index",
     "dev:deck": "node scripts/dev-deck.js",
     "dev:index": "vite",
+    "dev:all": "node scripts/dev-all.js",
     "create-deck": "./scripts/create-deck.sh",
     "validate": "node scripts/validate-metadata.js",
     "lint:md": "markdownlint '**/*.md' --ignore node_modules --ignore dist",

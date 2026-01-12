@@ -1,6 +1,6 @@
 <template>
   <article class="deck-card">
-    <a :href="deckUrl" class="deck-card-link">
+    <a :href="deckUrl" class="deck-card-link" @click.prevent="navigateToDeck">
       <div class="deck-card-image">
         <img :src="thumbnailUrl" :alt="`${deck.title} preview`" />
       </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import type { DeckMetadata } from '../utils/deckLoader'
 import { getDeckUrl, getThumbnailUrl } from '../utils/deckLoader'
 
@@ -34,8 +34,26 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const deckUrl = computed(() => getDeckUrl(props.deck.id))
+const deckUrl = ref<string>('#')
 const thumbnailUrl = computed(() => getThumbnailUrl(props.deck.id, props.deck.thumbnail))
+
+// Load deck URL asynchronously
+onMounted(async () => {
+  deckUrl.value = await getDeckUrl(props.deck.id)
+})
+
+// Force full page navigation to avoid Vite trying to resolve Slidev modules
+function navigateToDeck(event: MouseEvent) {
+  if (deckUrl.value === '#') return
+
+  // Allow Ctrl/Cmd+Click to open in new tab
+  if (event.ctrlKey || event.metaKey) {
+    window.open(deckUrl.value, '_blank')
+  } else {
+    // Force full page reload
+    window.location.href = deckUrl.value
+  }
+}
 </script>
 
 <style scoped>

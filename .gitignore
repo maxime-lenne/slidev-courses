@@ -56,3 +56,8 @@ coverage/
 # Cache
 .cache/
 .parcel-cache/
+
+# Generated configuration files
+vite.proxy.config.js
+vite.proxy.config.json
+index/public/deck-ports.json
