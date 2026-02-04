@@ -25,7 +25,7 @@
     "simplon",
     "education"
   ],
-  "author": "Simplon Training Team",
+  "author": "Maxime Lenne",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
