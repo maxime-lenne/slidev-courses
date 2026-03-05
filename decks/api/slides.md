@@ -34,7 +34,6 @@ We'll cover APIs, REST architecture, and HTTP fundamentals.
 -->
 
 ---
-
 layout: default
 class: text-center
 ---
@@ -77,7 +76,6 @@ On couvre à la fois la théorie et les outils pratiques.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -86,7 +84,6 @@ layout: section
 Application Programming Interface
 
 ---
-
 layout: default
 ---
 
@@ -121,7 +118,6 @@ Bénéfices :
 -->
 
 ---
-
 layout: default
 ---
 
@@ -196,7 +192,6 @@ Un même endpoint sert un mobile, un navigateur et un script bash identiquement.
 -->
 
 ---
-
 layout: default
 ---
 
@@ -276,7 +271,6 @@ REST Countries is great for learning - no API key needed!
 -->
 
 ---
-
 layout: section
 ---
 
@@ -285,7 +279,6 @@ layout: section
 Hypertext Transfer Protocol
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -341,7 +334,6 @@ and the server sends back a response.
 -->
 
 ---
-
 layout: default
 ---
 
@@ -373,7 +365,6 @@ L'URL est case-sensitive pour le path, mais pas pour le host.
 -->
 
 ---
-
 layout: default
 ---
 
@@ -448,7 +439,6 @@ HEAD et OPTIONS sont utilisés par l'infrastructure (cache, CORS, CDN).
 -->
 
 ---
-
 layout: default
 ---
 
@@ -511,7 +501,6 @@ Status codes are like HTTP's way of talking back to you.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -520,7 +509,6 @@ layout: section
 Representational State Transfer
 
 ---
-
 layout: default
 ---
 
@@ -540,7 +528,6 @@ Utilise ressources, verbes HTTP et codes de statut
 6. **Code on Demand** (optional): Server can send executable code
 
 ---
-
 layout: default
 ---
 
@@ -562,7 +549,6 @@ that make APIs scalable, reliable, and easy to understand.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -607,7 +593,6 @@ The HTTP method tells us the action.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -661,7 +646,6 @@ The HTTP method tells us the action.
 -->
 
 ---
-
 layout: default
 ---
 
@@ -694,7 +678,6 @@ Retenez : l'URL identifie la ressource, la méthode HTTP identifie l'action.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -743,7 +726,6 @@ Les headers customs commencent par X- par convention, bien que cette convention 
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -797,7 +779,6 @@ Les headers customs commencent par X- par convention, bien que cette convention 
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -831,7 +812,6 @@ Une réponse vide retourne [] (tableau vide), pas 404.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -875,7 +855,6 @@ Une réponse vide retourne [] (tableau vide), pas 404.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -925,7 +904,6 @@ Si l'id n'existe pas → 404, jamais 200 avec un body vide.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -990,7 +968,6 @@ Le header Location indique l'URL de la ressource créée — bonne pratique.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1059,7 +1036,6 @@ En pratique, PATCH est préféré car PUT force à envoyer TOUT l'objet.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1115,7 +1091,6 @@ La réponse contient toujours la ressource complète après modification.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1176,7 +1151,6 @@ Appeler DELETE deux fois : 1ère fois 204, 2ème fois 404 — c'est normal (idem
 -->
 
 ---
-
 layout: section
 ---
 
@@ -1185,7 +1159,6 @@ layout: section
 Qui envoie des requêtes — et avec quels outils
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1254,7 +1227,6 @@ La doc Swagger génère souvent des exemples cURL directement — pratique pour 
 -->
 
 ---
-
 layout: default
 ---
 
@@ -1332,7 +1304,6 @@ TTFB (Time To First Byte) = temps d'attente serveur — indicateur clé de perfo
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1402,7 +1373,6 @@ Le Runner permet de tester un scénario complet : login → créer → modifier 
 -->
 
 ---
-
 layout: default
 ---
 
@@ -1444,7 +1414,6 @@ It's promise-based, making it work great with async/await.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1494,7 +1463,6 @@ Use try-catch for network failures and parsing errors.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -1503,7 +1471,6 @@ layout: section
 Sécuriser l'accès à une API
 
 ---
-
 layout: default
 ---
 
@@ -1554,7 +1521,6 @@ On peut être authentifié mais non autorisé — ex: utilisateur connecté sans
 -->
 
 ---
-
 layout: default
 ---
 
@@ -1621,7 +1587,6 @@ Ne jamais mettre de données sensibles (mot de passe) dans le payload JWT.
 -->
 
 ---
-
 layout: default
 ---
 
@@ -1655,7 +1620,6 @@ Le refresh_token permet d'obtenir un nouveau access_token sans redemander à l'u
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1722,7 +1686,6 @@ OAuth 2.0 seul = autorisation. OIDC = authentification + autorisation.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -1731,7 +1694,6 @@ layout: section
 Pagination · Filtres · Tri · Soft Delete
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1805,7 +1767,6 @@ Cursor-based est la référence pour les feeds temps-réel (Twitter, Instagram).
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1877,7 +1838,6 @@ Documenter chaque filtre dans Swagger avec des exemples concrets.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -1949,7 +1909,6 @@ Le tri par défaut doit être documenté — les clients ne doivent pas dépendr
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2032,7 +1991,6 @@ La contrainte d'unicité devient : UNIQUE(email) WHERE deleted_at IS NULL.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2106,7 +2064,6 @@ Le champ `took_ms` est utile pour monitorer les performances de recherche.
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2186,7 +2143,6 @@ Le header Content-Length permet de rejeter les fichiers trop volumineux avant m�
 -->
 
 ---
-
 layout: section
 ---
 
@@ -2195,7 +2151,6 @@ layout: section
 Documenter et exploiter son API
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2249,7 +2204,6 @@ async def create_user(user: UserCreate):
 </v-click>
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2300,7 +2254,6 @@ Swagger UI est l'interface de test la plus utilisée en développement — pas b
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2357,7 +2310,6 @@ Générer DTOs, interfaces TypeScript, validateurs Zod/Yup.
 </v-clicks>
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2409,7 +2361,6 @@ Schemathesis fait du property-based testing : il génère des milliers de requê
 -->
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2461,7 +2412,6 @@ gRPC est souvent utilisé pour la communication interne entre microservices (pas
 -->
 
 ---
-
 layout: section
 ---
 
@@ -2470,7 +2420,6 @@ layout: section
 REST n'est pas le seul modèle
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2513,7 +2462,6 @@ stream.onmessage = (e) => console.log(e.data);
 </v-click>
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2567,7 +2515,6 @@ MCP est en train de devenir le standard pour l'intégration IA-outils.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -2576,7 +2523,6 @@ layout: section
 Comment aborder la conception d'une API
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2651,7 +2597,6 @@ API-as-a-Product est le niveau de maturité des grandes plateformes.
 -->
 
 ---
-
 layout: section
 ---
 
@@ -2660,7 +2605,6 @@ layout: section
 Les briques d'une API en production
 
 ---
-
 layout: two-cols-header
 ---
 
@@ -2755,7 +2699,6 @@ L'API gateway centralise tout ce qui est transverse et évite de le dupliquer da
 -->
 
 ---
-
 layout: section
 ---
 
@@ -2764,7 +2707,6 @@ layout: section
 Building great APIs
 
 ---
-
 layout: two-cols
 ---
 
@@ -2812,7 +2754,6 @@ Make it intuitive, secure, well-documented, and fast.
 -->
 
 ---
-
 layout: center
 class: text-center
 ---
@@ -2836,7 +2777,6 @@ and gradually tackle more complex authentication and data structures.
 -->
 
 ---
-
 layout: end
 ---
 
