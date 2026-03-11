@@ -1,6 +1,8 @@
 ---
 theme: ../../themes/simplon
 title: Advanced SQL Queries
+layout: cover
+background: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920
 subtitle: Jointures • Sous-requêtes • Group By
 class: text-center
 highlighter: shiki

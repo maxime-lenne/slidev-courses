@@ -16,9 +16,9 @@
     "Compréhension des concepts web (client/serveur)"
   ],
   "duration": "3 hours",
-  "theme": "maxime-lenne",
-  "thumbnail": "./assets/cover.jpeg",
-  "tags": ["api", "rest", "http", "web", "javascript", "fetch", "authentication", "web development", "backend", "frontend"],
+  "theme": "simplon",
+  "thumbnail": "./assets/cover.png",
+  "tags": ["api", "rest", "http", "swagger", "javascript", "fetch", "authentication", "backend", "web"],
   "language": "fr",
   "version": "1.0.0",
   "authors": [

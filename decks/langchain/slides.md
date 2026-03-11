@@ -1,6 +1,8 @@
 ---
-theme: ../../themes/simplon
+theme: ../../themes/maxime-lenne
 title: Introduction à LangChain
+layout: cover
+background: https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920
 info: |
   Introduction à LangChain - Chaîner des opérations LLM pour créer des applications puissantes et modulaires
   Duration: 8-10 minutes

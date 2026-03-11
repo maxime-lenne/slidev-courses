@@ -1,6 +1,7 @@
 ---
 theme: ../../themes/simplon
 layout: cover
+background: https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920
 title: Jour 3 — Modélisation & Schema BDD / SQL
 subtitle: MERISE • UML • SQL Schema • Index • Contraintes • DDL
 transition: fade

@@ -3,6 +3,7 @@ theme: ../../themes/simplon
 title: Mise en pratique n°2 — Analyse des ventes
 subtitle: Jointures • Sous-requêtes • Group By
 layout: cover
+background: https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=1920
 class: text-center
 highlighter: shiki
 drawings:

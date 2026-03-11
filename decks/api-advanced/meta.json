@@ -1,7 +1,7 @@
 {
   "id": "api-advanced",
-  "title": "API de gestion Simplon — FastAPI avancé",
-  "description": "Formation de 8 jours sur la conception d'une API REST professionnelle avec FastAPI, Pydantic v2, SQLModel, Alembic et pytest. Projet fil rouge : API de gestion des formations, sessions et inscriptions pour Simplon.",
+  "title": "Concevoir une API REST en Python avec FastAPI",
+  "description": "Conception d'une API REST professionnelle avec FastAPI, Pydantic v2... Projet fil rouge : API de gestion des formations, sessions et inscriptions pour Simplon.",
   "status": "published",
   "objectives": [
     "Mettre en place une architecture FastAPI en couches (models / schemas / services / routes)",
@@ -21,11 +21,10 @@
   ],
   "duration": "8 days",
   "theme": "simplon",
-  "thumbnail": "./assets/cover.jpeg",
+  "thumbnail": "./assets/cover.png",
   "tags": [
-    "fastapi", "python", "pydantic", "sqlmodel", "sqlalchemy",
-    "alembic", "pytest", "rest", "api", "backend",
-    "formation", "simplon", "dto", "validation", "tests"
+    "fastapi", "python", "pydantic", "api", "dto", "sqlmodel", "sqlalchemy",
+    "alembic", "pytest", "rest", "backend", "validation", "tests"
   ],
   "language": "fr",
   "version": "1.0.0",

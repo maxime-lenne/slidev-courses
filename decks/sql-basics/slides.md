@@ -2,6 +2,7 @@
 theme: ../../themes/simplon
 title: SQL Basics
 layout: cover
+background: https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1920
 highlighter: shiki
 drawings:
   persist: false

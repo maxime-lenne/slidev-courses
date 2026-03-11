@@ -14,8 +14,11 @@
         </div>
 
         <div class="deck-card-tags">
-          <span v-for="tag in deck.tags" :key="tag" class="deck-card-tag">
+          <span v-for="tag in deck.tags.slice(0, 5)" :key="tag" class="deck-card-tag">
             {{ tag }}
+          </span>
+          <span v-if="deck.tags.length > 5" class="deck-card-tag deck-card-tag--more">
+            +{{ deck.tags.length - 5 }}
           </span>
         </div>
       </div>
@@ -136,6 +139,11 @@ function navigateToDeck(event: MouseEvent) {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.deck-card-tag--more {
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 @media (max-width: 768px) {

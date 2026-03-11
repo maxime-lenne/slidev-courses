@@ -1,6 +1,7 @@
 ---
 theme: ../../themes/simplon
 layout: cover
+background: https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920
 title: Introduction à SQLite
 subtitle: Installation • Premières requêtes • Exercices
 class: text-center

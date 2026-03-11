@@ -1172,7 +1172,7 @@ L'outil universel pour tester et déboguer les APIs
 # GET — récupérer une ressource
 curl https://api.example.com/users
 
-# GET avec header d'authentification
+# GET avec authentification
 curl -H "Authorization: Bearer TOKEN" \
      https://api.example.com/users/me
 
@@ -1181,13 +1181,47 @@ curl -X POST https://api.example.com/users \
      -H "Content-Type: application/json" \
      -d '{"nom": "Alice", "email": "alice@test.fr"}'
 
+# DELETE
+curl -X DELETE https://api.example.com/users/5
+```
+
+::right::
+
+**Flags essentiels :**
+
+<div class="text-xs leading-tight">
+
+| Flag | Usage |
+|------|-------|
+| `-X` | Méthode HTTP (`-X POST`) |
+| `-H` | Header (`-H "Key: Value"`) |
+| `-d` | Corps de la requête (body) |
+| `-o` | Sauvegarder dans un fichier |
+| `-i` | Headers de réponse |
+| `-v` | Verbeux (requête + réponse) |
+| `-s` | Silencieux (pas de progress bar) |
+| `-L` | Suivre les redirections |
+
+</div>
+
+<!--
+cURL est disponible sur tous les OS. Maîtriser cURL c'est maîtriser HTTP.
+La doc Swagger génère souvent des exemples cURL directement — pratique pour tester sans installer Postman.
+-->
+
+---
+layout: two-cols-header
+---
+
+# cURL — Commandes avancées et astuces
+
+::left::
+
+```bash
 # PATCH — mise à jour partielle
 curl -X PATCH https://api.example.com/users/5 \
      -H "Content-Type: application/json" \
      -d '{"role": "admin"}'
-
-# DELETE
-curl -X DELETE https://api.example.com/users/5
 
 # Voir les headers de réponse
 curl -i https://api.example.com/users
@@ -1200,61 +1234,104 @@ curl -v -X POST https://api.example.com/users \
 
 ::right::
 
-<v-clicks>
+**Astuce : Copy as cURL**
 
-**Flags essentiels :**
+Dans les DevTools du navigateur, clic droit sur une requête → **Copy → Copy as cURL** pour rejouer exactement la même requête dans le terminal (avec les bons headers et cookies).
 
-| Flag | Usage |
-|------|-------|
-| `-X` | Méthode HTTP (`-X POST`) |
-| `-H` | Header (`-H "Key: Value"`) |
-| `-d` | Corps de la requête (body) |
-| `-o` | Sauvegarder la réponse dans un fichier |
-| `-i` | Inclure les headers de réponse |
-| `-v` | Verbeux (requête + réponse complètes) |
-| `-s` | Silencieux (pas de progress bar) |
-| `-L` | Suivre les redirections |
+<v-click>
 
-**Astuce :**
+**Utilisation en scripts**
 
-Dans les DevTools du navigateur, clic droit sur une requête → **Copy → Copy as cURL** pour rejouer exactement la même requête dans le terminal.
+```bash
+# -s silencieux + -o pour sauvegarder
+curl -s -o users.json \
+     -H "Authorization: Bearer $TOKEN" \
+     https://api.example.com/users
+```
 
-</v-clicks>
+Idéal pour l'automatisation, les migrations et les pipelines CI/CD.
+
+</v-click>
 
 <!--
 cURL est disponible sur tous les OS. Maîtriser cURL c'est maîtriser HTTP.
-La doc Swagger génère souvent des exemples cURL directement — pratique pour tester sans installer Postman.
 -->
 
 ---
-layout: default
+layout: two-cols-header
 ---
 
 # Browser DevTools — Onglet Réseau
 
 Inspecter toutes les requêtes HTTP d'une page web en temps réel
 
-<div class="grid grid-cols-2 gap-6">
+::left::
+
+**Ouvrir :** `F12` ou `Cmd+Option+I` → onglet **Réseau**
+
+**Filtres :**
+
+- **Fetch/XHR** → appels API
+- **Doc** → HTML de la page
+- **WS** → WebSockets
+
+**Actions :**
+
+- **Replay XHR** → rejouer la requête
+- **Copy as cURL** → réutiliser dans le terminal
+- **Preserve log** → conserver l'historique
+
+::right::
+
+**Informations disponibles par requête :**
+
+```
+▶ GET /api/users?page=1           200  45ms
+
+  En-têtes (Headers)
+  ├── Requête  : Authorization, Content-Type
+  └── Réponse  : Content-Type, Cache-Control
+
+  Charge utile (Payload)
+  └── Corps envoyé en POST/PATCH
+
+  Timing
+  ├── DNS lookup    :   2ms
+  ├── Connexion TCP :   8ms
+  ├── Waiting TTFB  : 120ms  ← temps serveur
+  └── Download      :  15ms
+```
+
+<!--
+Le Network tab est le premier réflexe quand une API ne répond pas comme attendu.
+TTFB (Time To First Byte) = temps d'attente serveur — indicateur clé de performance backend.
+-->
+
+---
+layout: default
+---
+
+# Browser DevTools — Cas d'usage
+
+Quand ouvrir l'onglet Réseau ?
+
+<div class="grid grid-cols-2 gap-8 mt-6">
 
 <div>
 
-**Ouvrir les DevTools :**
+<v-clicks>
 
-- `F12` ou `Cmd+Option+I` (Mac)
-- Clic droit → **Inspecter**
-- Aller dans l'onglet **Réseau** (Network)
+**Déboguer une API**
 
-**Filtrer les requêtes :**
+- Vérifier qu'une requête part bien
+- Contrôler les headers envoyés (token, Content-Type...)
+- Inspecter le body de la réponse en JSON formaté
 
-- **Fetch/XHR** → uniquement les appels API
-- **Doc** → le HTML de la page
-- **WS** → WebSockets (temps réel)
+**Diagnostiquer CORS**
 
-**Actions utiles :**
+Si la console affiche `blocked by CORS policy`, l'onglet réseau montre exactement quel header manque dans la réponse.
 
-- Clic droit sur une requête → **Replay XHR** (rejouer)
-- **Copy → Copy as cURL** → réutiliser dans le terminal
-- Cocher **Preserve log** pour garder l'historique lors des navigations
+</v-clicks>
 
 </div>
 
@@ -1262,34 +1339,15 @@ Inspecter toutes les requêtes HTTP d'une page web en temps réel
 
 <v-clicks>
 
-**Informations disponibles par requête :**
+**Analyser les performances**
 
-```
-▶ GET /api/users?page=1                    200  45ms
+- **TTFB** (Time To First Byte) = temps d'attente serveur
+- Identifier les requêtes lentes (> 500ms)
+- Détecter les appels redondants
 
-  En-têtes (Headers)
-  ├── Requête  : Authorization, Content-Type, Origin
-  └── Réponse  : Content-Type, Cache-Control, CORS
+**Reproduire une requête**
 
-  Charge utile (Payload)
-  └── Corps envoyé en POST/PATCH (JSON, Form Data)
-
-  Aperçu (Preview)
-  └── JSON formaté et navigable de la réponse
-
-  Timing
-  ├── DNS lookup    :   2ms
-  ├── Connexion TCP :   8ms
-  ├── Waiting TTFB  : 120ms   ← temps serveur
-  └── Download      :  15ms
-```
-
-**Cas d'usage :**
-
-- Vérifier qu'une requête part bien (et avec les bons headers)
-- Diagnostiquer une erreur **CORS**
-- Inspecter un token JWT envoyé
-- Mesurer les performances (TTFB)
+Clic droit → **Copy as cURL** → coller dans le terminal pour rejouer exactement la même requête avec les mêmes headers et token.
 
 </v-clicks>
 
@@ -1298,7 +1356,6 @@ Inspecter toutes les requêtes HTTP d'une page web en temps réel
 </div>
 
 <!--
-Le Network tab est le premier réflexe quand une API ne répond pas comme attendu.
 CORS : si la console affiche "blocked by CORS policy", l'onglet réseau montre exactement quel header manque.
 TTFB (Time To First Byte) = temps d'attente serveur — indicateur clé de performance backend.
 -->
@@ -1321,8 +1378,9 @@ L'outil de référence pour explorer, tester et documenter les APIs
 - Définir le **Body** (raw JSON, form-data, binary...)
 - Envoyer et inspecter la réponse formatée
 
-**Collections :**
-Grouper les requêtes par projet ou par ressource (`/users`, `/sessions`...) et les partager avec l'équipe via un lien ou Git.
+**Collections :** grouper les requêtes par projet (`/users`, `/sessions`...) et les partager avec l'équipe via un lien ou Git.
+
+::right::
 
 **Variables d'environnement :**
 
@@ -1331,13 +1389,32 @@ Grouper les requêtes par projet ou par ressource (`/users`, `/sessions`...) et 
 {{token}}    = eyJhbGci...
 ```
 
-Switcher entre `dev`, `staging`, `prod` en un clic sans réécrire les URLs.
+Switcher entre `dev`, `staging`, `prod` en un clic.
 
-::right::
+<v-click>
 
-<v-clicks>
+**Autres fonctionnalités :**
 
-**Tests automatiques (onglet Tests) :**
+- **Mock server** : simuler une API avant qu'elle existe
+- **Runner** : rejouer une collection en séquence
+- **Import OpenAPI** : importer un `openapi.json`
+
+**Alternatives open-source :** Insomnia, Hoppscotch
+
+</v-click>
+
+<!--
+Postman est l'outil standard en entreprise pour partager les tests d'API entre équipes.
+Les variables d'environnement évitent de copier-coller des tokens à chaque test.
+-->
+
+---
+layout: default
+---
+
+# Postman — Tests automatiques
+
+Valider les réponses API après chaque requête (onglet **Tests**)
 
 ```javascript
 // Assertions exécutées après chaque requête
@@ -1355,21 +1432,19 @@ const token = pm.response.json().access_token;
 pm.environment.set("token", token);
 ```
 
-**Autres fonctionnalités :**
+<v-click>
 
-- **Mock server** : simuler une API avant qu'elle existe
-- **Documentation** : générer une doc publique depuis les collections
-- **Runner** : rejouer une collection entière en séquence
-- **Import OpenAPI** : importer un `openapi.json` directement
+**Pourquoi écrire des tests Postman ?**
 
-**Alternatives open-source :** Insomnia, Hoppscotch
+- Détecter les régressions dès le développement
+- Le **Runner** permet de tester un scénario complet : login → créer → modifier → supprimer
+- Les collections peuvent être jouées en CI/CD avec **Newman** (CLI Postman)
 
-</v-clicks>
+</v-click>
 
 <!--
-Postman est l'outil standard en entreprise pour partager les tests d'API entre équipes.
-Les variables d'environnement évitent de copier-coller des tokens à chaque test.
 Le Runner permet de tester un scénario complet : login → créer → modifier → supprimer.
+Newman est le CLI de Postman — idéal pour intégrer les tests dans une pipeline CI/CD.
 -->
 
 ---
@@ -1552,9 +1627,7 @@ X-API-Key: sk-1234567890abcdef
 
 ```http
 GET /api/users/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9
-                      .eyJzdWIiOiI0MiIsInJvbGUiOiJhZG1pbiJ9
-                      .SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MiJ9.sig
 ```
 
 Un JWT est composé de 3 parties encodées en base64 :
@@ -1587,29 +1660,44 @@ Ne jamais mettre de données sensibles (mot de passe) dans le payload JWT.
 -->
 
 ---
-layout: default
+layout: center
 ---
 
 # OAuth 2.0 — Autorisation déléguée
 
-Permettre à une app d'accéder à vos données sans vous donner votre mot de passe
+Permettre à une app d'accéder à vos données **sans vous donner votre mot de passe**
+
+<v-clicks>
+
+- Le mot de passe n'est **jamais partagé** avec l'application tierce
+- L'*authorization code* est à **usage unique** et courte durée de vie
+- L'*access_token* est **limité dans le temps** (1h typiquement)
+- Le *refresh_token* renouvelle l'accès **sans redemander** à l'utilisateur
+
+</v-clicks>
+
+---
+layout: default
+---
+
+# OAuth 2.0 — Le flux d'autorisation
 
 ```mermaid
 sequenceDiagram
     actor U as Utilisateur
-    participant A as App (Client)
-    participant AS as Authorization Server<br/>(Google, GitHub...)
-    participant RS as Resource Server<br/>(API)
+    participant A as App
+    participant AS as Auth Server
+    participant RS as API
 
     U->>A: "Connecte-toi avec Google"
-    A->>AS: Redirige vers /authorize<br/>?client_id=...&scope=email,profile&redirect_uri=...
-    AS->>U: Page de consentement<br/>"L'app veut accéder à : email, profil"
+    A->>AS: /authorize?client_id=...&scope=email
+    AS->>U: Page de consentement
     U->>AS: Accepte
-    AS->>A: Redirige vers redirect_uri<br/>?code=AUTH_CODE_xyz
-    A->>AS: POST /token<br/>{ code, client_secret }
-    AS->>A: { access_token, refresh_token }
-    A->>RS: GET /userinfo<br/>Authorization: Bearer access_token
-    RS->>A: { email, name, ... }
+    AS->>A: redirect_uri?code=AUTH_CODE
+    A->>AS: POST /token {code, client_secret}
+    AS->>A: {access_token, refresh_token}
+    A->>RS: GET /userinfo Bearer token
+    RS->>A: email, name...
 ```
 
 <!--
@@ -1638,7 +1726,40 @@ layout: two-cols-header
 
 </v-clicks>
 
-<v-click>
+::right::
+
+**Les tokens**
+
+<div class="text-sm leading-tight">
+
+| Token | Durée | Rôle |
+|-------|-------|------|
+| **Authorization Code** | ~10 min | Échangé contre les tokens |
+| **Access Token** | ~1h | Appeler l'API |
+| **Refresh Token** | Jours/sem. | Renouveler l'access token |
+| **ID Token** (OIDC) | ~1h | Identité utilisateur (JWT) |
+
+</div>
+
+**Dans les headers**
+
+```http
+Authorization: Bearer <access_token>
+```
+
+<!--
+OIDC (OpenID Connect) est une couche au-dessus d'OAuth 2.0 qui ajoute l'authentification.
+OAuth 2.0 seul = autorisation. OIDC = authentification + autorisation.
+"Se connecter avec Google" utilise OIDC, pas OAuth 2.0 seul.
+-->
+
+---
+layout: two-cols-header
+---
+
+# OAuth 2.0 — Scopes et flux alternatifs
+
+::left::
 
 **Les scopes** — granularité des permissions
 
@@ -1649,28 +1770,11 @@ scope=repo            → accès aux repos GitHub
 scope=read:user       → lecture du profil utilisateur
 ```
 
-</v-click>
-
 ::right::
 
-<v-clicks>
-
-**Les tokens**
-
-| Token | Durée | Rôle |
-|-------|-------|------|
-| **Authorization Code** | ~10 min, usage unique | Échangé contre les tokens |
-| **Access Token** | 1h typiquement | Appeler l'API |
-| **Refresh Token** | Jours / semaines | Renouveler l'access token |
-| **ID Token** (OIDC) | ~1h | Identité de l'utilisateur (JWT) |
-
-**Dans les headers**
-
-```http
-Authorization: Bearer <access_token>
-```
-
 **Flux alternatifs (grants)**
+
+<v-clicks>
 
 - **Authorization Code** → apps web/mobile ✅
 - **Client Credentials** → serveur-à-serveur ✅
@@ -1678,12 +1782,6 @@ Authorization: Bearer <access_token>
 - **Password** → déprécié ⚠️
 
 </v-clicks>
-
-<!--
-OIDC (OpenID Connect) est une couche au-dessus d'OAuth 2.0 qui ajoute l'authentification.
-OAuth 2.0 seul = autorisation. OIDC = authentification + autorisation.
-"Se connecter avec Google" utilise OIDC, pas OAuth 2.0 seul.
--->
 
 ---
 layout: section
@@ -1751,13 +1849,6 @@ GET /api/posts?after=eyJpZCI6NTB9&limit=20
 Avantage : stable si des lignes sont insérées/supprimées entre deux pages.
 Inconvénient : impossible de sauter directement à la page N.
 
-**Pourquoi toujours paginer ?**
-
-- Une table peut contenir des millions de lignes
-- Protège la base de données et le réseau
-- L'interface ne peut pas afficher 100 000 lignes
-- Règle d'or : définir un `limit` maximum côté serveur (ex. 100)
-
 </v-clicks>
 
 <!--
@@ -1765,6 +1856,21 @@ Une API sans pagination peut mettre un serveur à genoux.
 Offset/limit est simple mais peut être instable : si une ligne est insérée en page 1 entre deux appels, les éléments se décalent.
 Cursor-based est la référence pour les feeds temps-réel (Twitter, Instagram).
 -->
+
+---
+layout: default
+---
+
+# Pagination — Pourquoi toujours paginer ?
+
+<v-clicks>
+
+- Une table peut contenir des **millions de lignes**
+- Protège la **base de données et le réseau**
+- L'interface ne peut pas afficher 100 000 lignes
+- Règle d'or : définir un `limit` **maximum côté serveur** (ex. 100)
+
+</v-clicks>
 
 ---
 layout: two-cols-header
@@ -1795,6 +1901,35 @@ GET /api/formations?q=python
 GET /api/users?search=alice
 ```
 
+::right::
+
+**Conventions de nommage des filtres :**
+
+<div class="text-sm leading-tight">
+
+| Suffixe | Signification | Exemple |
+|---------|--------------|---------|
+| *(aucun)* | Égalité exacte | `?role=admin` |
+| `_min` / `_max` | Borne numérique ou date | `?duree_min=10` |
+| `_not` | Exclusion | `?role_not=admin` |
+| `_in` | Parmi une liste | `?id_in=1,2,3` |
+| `q` / `search` | Recherche textuelle | `?q=python` |
+
+</div>
+
+<!--
+Les filtres s'implémentent côté serveur avec des WHERE dynamiques — jamais filtrer sur une réponse complète côté client.
+Documenter chaque filtre dans Swagger avec des exemples concrets.
+-->
+
+---
+layout: two-cols-header
+---
+
+# Filtres — Valeurs multiples et opérateurs
+
+::left::
+
 **Plusieurs valeurs pour un même champ**
 
 ```http
@@ -1807,18 +1942,6 @@ GET /api/formations?niveau=débutant,intermédiaire
 
 ::right::
 
-<v-clicks>
-
-**Conventions de nommage des filtres :**
-
-| Suffixe | Signification | Exemple |
-|---------|--------------|---------|
-| *(aucun)* | Égalité exacte | `?role=admin` |
-| `_min` / `_max` | Borne numérique ou date | `?duree_min=10` |
-| `_not` | Exclusion | `?role_not=admin` |
-| `_in` | Parmi une liste | `?id_in=1,2,3` |
-| `q` / `search` | Recherche textuelle | `?q=python` |
-
 **Filtres négatifs et numériques**
 
 ```http
@@ -1827,15 +1950,8 @@ GET /api/formations?duree_min=10&duree_max=40
 GET /api/sessions?places_restantes_min=1
 ```
 
-**Règle :** les filtres se cumulent avec un ET logique.
-Pour un OU, il faut une convention explicite (ex. `?niveau=débutant,intermédiaire`).
-
-</v-clicks>
-
-<!--
-Les filtres s'implémentent côté serveur avec des WHERE dynamiques — jamais filtrer sur une réponse complète côté client.
-Documenter chaque filtre dans Swagger avec des exemples concrets.
--->
+**Règle :** les filtres se cumulent avec un **ET logique**.
+Pour un OU, convention explicite : `?niveau=débutant,intermédiaire`.
 
 ---
 layout: two-cols-header
@@ -1870,17 +1986,7 @@ GET /api/sessions?sort=date_debut,-capacite_max
 # → date_debut ASC, puis capacite_max DESC
 ```
 
-**Valeur par défaut** — toujours documentée
-
-```http
-# Sans paramètre → tri implicite
-GET /api/users
-# Équivalent à : ?sort=-date_inscription
-```
-
 ::right::
-
-<v-clicks>
 
 **Tri stable — indispensable avec la pagination**
 
@@ -1894,19 +2000,43 @@ GET /api/users?sort=nom&page=2
 GET /api/users?sort=nom,id
 ```
 
-**Pourquoi le tri stable est crucial :**
-
-Si vous triez par `nom` sans critère de départage unique (`id`), deux utilisateurs homonymes peuvent permuter d'une page à l'autre. Un élément peut alors apparaître **deux fois** ou **jamais** selon les insertions en base.
-
-**Règle :** toujours terminer le tri par un champ unique (`id`, `created_at` + `id`...).
-
-</v-clicks>
+Si vous triez par `nom` sans critère de départage unique (`id`), deux utilisateurs homonymes peuvent permuter d'une page à l'autre — un élément peut apparaître **deux fois** ou **jamais**.
 
 <!--
 Un tri sans critère de départage unique est un bug subtil très courant en production.
 La convention préfixe -/+ est utilisée par GitHub, Stripe et Notion dans leurs APIs publiques.
 Le tri par défaut doit être documenté — les clients ne doivent pas dépendre d'un ordre implicite.
 -->
+
+---
+layout: two-cols-header
+---
+
+# Tri — Valeur par défaut et règles
+
+::left::
+
+**Valeur par défaut** — toujours documentée
+
+```http
+# Sans paramètre → tri implicite
+GET /api/users
+# Équivalent à : ?sort=-date_inscription
+```
+
+Les clients ne doivent pas dépendre d'un ordre implicite.
+
+::right::
+
+**Règles à respecter**
+
+<v-clicks>
+
+- Toujours terminer le tri par un champ **unique** (`id`, `created_at` + `id`...)
+- Documenter le **tri par défaut** dans Swagger
+- La convention préfixe `-/+` : utilisée par GitHub, Stripe, Notion
+
+</v-clicks>
 
 ---
 layout: two-cols-header
@@ -1929,39 +2059,45 @@ UPDATE users SET deleted_at = NOW() WHERE id = 5;
 -- La ligne reste en base de données
 ```
 
-**Le modèle**
-
-```python
-class User(SQLModel, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-    nom: str
-    email: str
-    deleted_at: datetime | None = None  # None = actif
-
-    @property
-    def is_deleted(self) -> bool:
-        return self.deleted_at is not None
-```
-
-**L'endpoint DELETE ne supprime plus physiquement**
+**DELETE ne supprime plus physiquement**
 
 ```http
 DELETE /api/users/5
-→ HTTP 204, mais deleted_at = NOW() en base
+→ 204, mais deleted_at = NOW() en base
 ```
 
 ::right::
-
-<v-clicks>
 
 **Pourquoi soft delete ?**
 
 - **Récupération** : annuler une suppression accidentelle
 - **Audit trail** : historique complet conservé
-- **Intégrité référentielle** : les données liées restent cohérentes
-- **Légal** : certaines données doivent être conservées X années
+- **Intégrité référentielle** : données liées cohérentes
+- **Légal** : conservation obligatoire X années
 
-**Filtrage — masquer les supprimés par défaut**
+**Le modèle**
+
+```python
+class User(SQLModel, table=True):
+    nom: str
+    email: str
+    deleted_at: datetime | None = None  # None = actif
+```
+
+<!--
+Le soft delete est la norme dans les applications métier.
+Sans lui, une suppression accidentelle peut provoquer des incidents critiques.
+-->
+
+---
+layout: two-cols-header
+---
+
+# Soft Delete — Filtrage et contraintes
+
+::left::
+
+**Masquer les supprimés par défaut**
 
 ```python
 # Les supprimés sont invisibles par défaut
@@ -1972,6 +2108,8 @@ def get_users(db, include_deleted: bool = False):
     return db.exec(query).all()
 ```
 
+**Endpoints utiles**
+
 ```http
 # Inclure les supprimés (admin uniquement)
 GET /api/users?include_deleted=true
@@ -1980,14 +2118,28 @@ GET /api/users?include_deleted=true
 POST /api/users/5/restore
 ```
 
-**Piège :** la contrainte `UNIQUE(email)` doit tenir compte du `deleted_at` — un email "supprimé" doit pouvoir être réutilisé.
+::right::
 
-</v-clicks>
+<v-click>
+
+**Piège : contrainte UNIQUE**
+
+La contrainte `UNIQUE(email)` doit tenir compte du `deleted_at` — un email "supprimé" doit pouvoir être réutilisé.
+
+```sql
+-- PostgreSQL : index partiel
+CREATE UNIQUE INDEX users_email_unique
+  ON users(email)
+  WHERE deleted_at IS NULL;
+```
+
+La contrainte ne s'applique qu'aux lignes **actives**.
+
+</v-click>
 
 <!--
-Le soft delete est la norme dans les applications métier.
-Sans lui, une suppression accidentelle peut provoquer des incidents critiques.
 La contrainte d'unicité devient : UNIQUE(email) WHERE deleted_at IS NULL.
+Sans index partiel, un utilisateur supprimé bloque la réinscription avec le même email.
 -->
 
 ---
@@ -2020,15 +2172,7 @@ WHERE titre ILIKE '%python%'
    OR tags ILIKE '%python%'
 ```
 
-**Recherche avancée (syntaxe structurée)**
-
-```http
-GET /api/formations?q=python+django&fields=titre,tags
-```
-
 ::right::
-
-<v-clicks>
 
 **Réponse enrichie**
 
@@ -2043,10 +2187,38 @@ GET /api/formations?q=python+django&fields=titre,tags
 
 **Bonnes pratiques**
 
+<div class="text-sm leading-tight">
+
 - Minimum 2–3 caractères avant de déclencher la recherche
 - Retourner `[]` si aucun résultat (jamais `404`)
 - Insensible à la casse et aux accents (`ILIKE`, `unaccent`)
 - Pour des volumes importants → **Elasticsearch**, **Typesense**, **Meilisearch**
+
+</div>
+
+<!--
+La recherche textuelle simple s'implémente avec ILIKE en PostgreSQL.
+Pour la prod avec beaucoup de données, un moteur de recherche dédié est indispensable.
+Le champ `took_ms` est utile pour monitorer les performances de recherche.
+-->
+
+---
+layout: two-cols-header
+---
+
+# Recherche — Avancé et autocomplétion
+
+::left::
+
+**Recherche avancée (syntaxe structurée)**
+
+```http
+GET /api/formations?q=python+django&fields=titre,tags
+```
+
+Permet de cibler des champs spécifiques et combiner des termes.
+
+::right::
 
 **Autocomplétion (suggest)**
 
@@ -2055,13 +2227,7 @@ GET /api/formations/suggest?q=py
 → ["Python", "PyTest", "PyDantic"]
 ```
 
-</v-clicks>
-
-<!--
-La recherche textuelle simple s'implémente avec ILIKE en PostgreSQL.
-Pour la prod avec beaucoup de données, un moteur de recherche dédié est indispensable.
-Le champ `took_ms` est utile pour monitorer les performances de recherche.
--->
+Retourner les suggestions dès 2–3 caractères pour une bonne UX.
 
 ---
 layout: two-cols-header
@@ -2093,18 +2259,7 @@ curl -X POST /api/users/42/avatar \
      -F "file=@photo.jpg"
 ```
 
-**Upload avec métadonnées**
-
-```bash
-curl -X POST /api/documents \
-     -F "file=@rapport.pdf" \
-     -F "titre=Rapport Q1" \
-     -F "categorie=finance"
-```
-
 ::right::
-
-<v-clicks>
 
 **Réponse `201 Created`**
 
@@ -2119,12 +2274,46 @@ curl -X POST /api/documents \
 }
 ```
 
-**Validations côté serveur**
+**Upload avec métadonnées**
+
+```bash
+curl -X POST /api/documents \
+     -F "file=@rapport.pdf" \
+     -F "titre=Rapport Q1" \
+     -F "categorie=finance"
+```
+
+<!--
+Ne jamais stocker le nom de fichier envoyé par le client directement — risque de path traversal.
+Toujours valider le MIME type côté serveur (le client peut mentir sur l'extension).
+-->
+
+---
+layout: default
+---
+
+# Upload de fichiers — Validations côté serveur
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
+<v-clicks>
+
+**Règles essentielles**
 
 - **Type MIME** : accepter uniquement `image/*`, `application/pdf`...
 - **Taille max** : rejeter au-delà d'un seuil (`413 Payload Too Large`)
 - **Nom de fichier** : ne jamais faire confiance — utiliser un nom généré
 - **Stockage** : ne pas stocker dans la base — utiliser S3, Cloudinary, etc.
+
+</v-clicks>
+
+</div>
+
+<div>
+
+<v-clicks>
 
 **Codes de réponse**
 
@@ -2134,11 +2323,22 @@ curl -X POST /api/documents \
 | `400` | Type de fichier non autorisé |
 | `413` | Fichier trop volumineux |
 
+**Bonnes pratiques**
+
+<div class="text-sm leading-tight">
+
+- Valider le MIME type **côté serveur** (le client peut mentir sur l'extension)
+- `Content-Length` : rejeter les fichiers trop volumineux avant de les lire
+
+</div>
+
 </v-clicks>
 
+</div>
+
+</div>
+
 <!--
-Ne jamais stocker le nom de fichier envoyé par le client directement — risque de path traversal.
-Toujours valider le MIME type côté serveur (le client peut mentir sur l'extension).
 Le header Content-Length permet de rejeter les fichiers trop volumineux avant même de les lire.
 -->
 
@@ -2257,7 +2457,7 @@ Swagger UI est l'interface de test la plus utilisée en développement — pas b
 layout: two-cols-header
 ---
 
-# OpenAPI spec — `openapi.json` pour industrialiser le développement
+# OpenAPI spec — Industrialiser le développement
 
 ::left::
 
@@ -2313,7 +2513,7 @@ Générer DTOs, interfaces TypeScript, validateurs Zod/Yup.
 layout: two-cols-header
 ---
 
-# OpenAPI spec — `openapi.json` pour industrialiser le développement
+# OpenAPI spec — Industrialiser le développement
 
 ::left::
 
@@ -2364,7 +2564,7 @@ Schemathesis fait du property-based testing : il génère des milliers de requê
 layout: two-cols-header
 ---
 
-# Alternative à OpenAPI : JSON:API — une convention stricte
+# JSON:API — Une convention stricte
 
 ::left::
 
@@ -2385,10 +2585,14 @@ layout: two-cols-header
 }
 ```
 
-- Spécification qui définit la structure exacte des réponses JSON
+<div class="text-sm leading-tight">
+
+- Structure exacte des réponses JSON définie par spec
 - Inclut : pagination, relations, liens, erreurs — tous normalisés
 - Élimine les décisions de design au niveau du format
-- Moins répandu mais très cohérent pour des APIs complexes
+- Moins répandu mais cohérent pour des APIs complexes
+
+</div>
 
 </v-clicks>
 
@@ -2544,18 +2748,9 @@ On définit le contrat OpenAPI **avant** d'écrire le code.
 5. Tests contrat   → schemathesis, Dredd
 ```
 
-Avantages :
-
-- Front et back travaillent en parallèle
-- Contrat = source de vérité commune
-- Versioning et gouvernance propres
-- Industrialisation facile
-
 *Outils : Stoplight, SwaggerHub, Bruno*
 
 ::right::
-
-<v-clicks>
 
 **Code-First**
 
@@ -2568,32 +2763,68 @@ async def list_users(db: Session = Depends(get_db)):
     ...
 ```
 
-Avantages :
+<v-clicks>
 
-- Rapide au démarrage
-- Simple pour petites équipes
-- Moins de fichiers à maintenir
+**Avantages contract-first :** front+back en parallèle, source de vérité commune, gouvernance propre.
 
-Risques :
+**Avantages code-first :** rapide au démarrage, simple pour petites équipes.
 
-- Dérive entre code et doc
-- Plus difficile à gouverner à grande échelle
-
-**API-as-a-Product**
-
-Vision stratégique : l'API est un produit livré à des développeurs.
-
-- Portail développeur, versioning clair, SLA
-- Analytics d'usage, support, changelog public
-- Potentiellement monétisable
-- Exemples : Stripe, Twilio, Cloudinary
+**Risques code-first :** dérive doc/code, difficile à gouverner à grande échelle.
 
 </v-clicks>
 
 <!--
 Contract-First est la référence pour les APIs publiques ou partagées entre équipes.
 Code-First convient pour les projets rapides où l'API est consommée uniquement en interne.
+-->
+
+---
+layout: default
+---
+
+# API-as-a-Product
+
+Vision stratégique : l'API est un produit livré à des développeurs
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
+<v-clicks>
+
+**Les piliers**
+
+- Portail développeur avec doc interactive
+- Versioning clair et changelog public
+- SLA (Service Level Agreement) défini
+- Support dédié aux intégrateurs
+
+</v-clicks>
+
+</div>
+
+<div>
+
+<v-clicks>
+
+**Exemples de référence**
+
+| Entreprise | API emblématique |
+|------------|-----------------|
+| **Stripe** | Paiements — doc exemplaire |
+| **Twilio** | SMS / appels — DX soignée |
+| **Cloudinary** | Images — SDK générés |
+| **GitHub** | REST + GraphQL + webhooks |
+
+</v-clicks>
+
+</div>
+
+</div>
+
+<!--
 API-as-a-Product est le niveau de maturité des grandes plateformes.
+L'API devient un canal de distribution à part entière — parfois monétisable directement.
 -->
 
 ---
@@ -2608,9 +2839,9 @@ Les briques d'une API en production
 layout: two-cols-header
 ---
 
-# Infrastructure d'une API
+# Infrastructure d'une API (1/2)
 
-Healthcheck · Rate limiter · Gateway · Cache · Versioning
+Healthcheck · Rate limiter · API Gateway
 
 ::left::
 
@@ -2630,9 +2861,12 @@ GET /health  →  200 OK
 }
 ```
 
-Un statut `degraded` retourne `200`, une panne retourne `503 Service Unavailable`. Utilisé par les load balancers et les status pages.
+Un statut `degraded` → `200`, une panne → `503 Service Unavailable`.
+Utilisé par les load balancers et les status pages.
 
-<v-click>
+::right::
+
+<v-clicks>
 
 **Rate Limiter — protéger l'API**
 
@@ -2644,24 +2878,33 @@ X-RateLimit-Remaining: 0
 X-RateLimit-Reset: 1772000060
 ```
 
-Règles typiques : 100 req/min par IP, 1000 req/min par API Key. Implémenté en gateway ou middleware.
-
-</v-click>
-
-::right::
-
-<v-clicks>
+Règles typiques : 100 req/min par IP, 1000 req/min par API Key.
 
 **API Gateway — point d'entrée unique**
 
 ```
-Client → [API Gateway] → Service A
-                       → Service B
-                       → Service C
+Client → [Gateway] → Service A / B / C
 ```
 
-Responsabilités : auth, routing, rate limiting, logging, CORS, SSL termination.
-*Outils : Kong, Traefik, AWS API Gateway, Nginx*
+Auth · Routing · Rate limit · CORS · SSL
+*Kong, Traefik, AWS API Gateway, Nginx*
+
+</v-clicks>
+
+<!--
+Le healthcheck est la première chose à implémenter avant de mettre en prod.
+Le rate limiter est essentiel pour les APIs publiques.
+-->
+
+---
+layout: two-cols-header
+---
+
+# Infrastructure d'une API (2/2)
+
+Cache · Versioning
+
+::left::
 
 **Cache — réduire la charge**
 
@@ -2677,6 +2920,10 @@ If-None-Match: "abc123"
 
 *Niveaux : HTTP cache, Redis, CDN (Cloudflare)*
 
+::right::
+
+<v-click>
+
 **Versioning**
 
 ```http
@@ -2688,14 +2935,13 @@ GET /api/v2/users   ← breaking change
 Accept: application/vnd.myapi+json;version=2
 ```
 
-Politique : déprécier avec `Sunset` header, maintenir N-1.
+Politique : déprécier avec le header `Sunset`, maintenir N-1.
 
-</v-clicks>
+</v-click>
 
 <!--
-Le healthcheck est la première chose à implémenter avant de mettre en prod.
-Le rate limiter est essentiel pour les APIs publiques — sans lui, un client défaillant peut mettre le serveur à genoux.
 L'API gateway centralise tout ce qui est transverse et évite de le dupliquer dans chaque service.
+Le cache HTTP est le plus simple et ne nécessite aucune infra supplémentaire.
 -->
 
 ---
@@ -2777,7 +3023,8 @@ and gradually tackle more complex authentication and data structures.
 -->
 
 ---
-layout: end
+layout: center
+class: text-center
 ---
 
 # Thank You!

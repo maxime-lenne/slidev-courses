@@ -18,8 +18,16 @@
   ],
   "duration": "3 hours",
   "theme": "simplon",
-  "thumbnail": "./assets/preview.svg",
-  "tags": ["sql", "database", "beginner", "merise", "uml", "schema", "bdd"],
+  "thumbnail": "./assets/cover.png",
+  "tags": [
+    "sql",
+    "database",
+    "beginner",
+    "merise",
+    "uml",
+    "schema",
+    "bdd"
+  ],
   "language": "fr",
   "version": "0.1.0",
   "authors": [

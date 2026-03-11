@@ -34,21 +34,21 @@ examples/
 
 ## Commands
 
-npm test && npm run lint
+bun test && bun run lint
 
 ### Slidev Commands
 ```bash
 # Development server with hot reload
-npm run dev
+bun run dev
 
 # Build for production
-npm run build
+bun run build
 
 # Export to PDF
-npm run export
+bun run export
 
 # Export to SPA (static hosting)
-npm run build -- --base /[repo-name]/
+bun run build -- --base /[repo-name]/
 ```
 
 ## Code Style

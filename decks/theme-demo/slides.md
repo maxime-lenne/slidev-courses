@@ -2,6 +2,7 @@
 theme: ../../themes/maxime-lenne
 title: Démo Thème Maxime Lenne
 layout: cover
+background: https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920
 highlighter: shiki
 drawings:
   persist: false
@@ -330,6 +331,7 @@ Exercices pratiques avec SQLite
 
 ---
 layout: cover
+background: https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920
 ---
 
 # Merci !
