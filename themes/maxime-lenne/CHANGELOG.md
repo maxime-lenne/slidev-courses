@@ -5,12 +5,14 @@
 ### Création initiale du thème
 
 #### 🎨 Système de design
+
 - Palette de couleurs basée sur maxime-lenne.fr
 - Dégradé signature bleu (#2563eb) vers vert (#10b981)
 - Support mode sombre/clair automatique
 - Variables CSS personnalisées pour tous les composants
 
 #### 📐 Layouts (12 au total)
+
 - **cover** : Page de couverture avec dégradé plein écran
 - **section** : Diviseur de section avec effets lumineux
 - **default** : Layout standard pour le contenu
@@ -25,12 +27,14 @@
 - **intro** : Introduction douce (alternative au cover)
 
 #### 🧩 Composants personnalisés
+
 - Boîtes en surbrillance (highlight-box)
 - Bordures gradient (gradient-border)
 - Badges/tags colorés
 - Grilles responsives (grid-2, grid-3, grid-4)
 
 #### ✨ Typographie
+
 - Titres avec dégradé automatique
 - Texte en gras avec effet dégradé
 - Italique avec couleur verte
@@ -38,6 +42,7 @@
 - Système de tailles cohérent
 
 #### 🎯 Éléments stylisés
+
 - Tableaux avec en-tête dégradé
 - Citations avec guillemets stylisés
 - Listes avec marqueurs colorés
@@ -46,18 +51,21 @@
 - Sélection de texte avec dégradé
 
 #### 📦 Configuration
+
 - Package.json configuré pour Slidev
 - Setup UnoCSS avec presets personnalisés
 - Setup Shiki pour la coloration syntaxique
 - Fonts système optimisées
 
 #### 📚 Documentation
+
 - README.md complet
 - USAGE.md avec exemples
 - example.md avec démonstration de tous les layouts
 - CHANGELOG.md (ce fichier)
 
 ### Fichiers créés
+
 ```
 themes/maxime-lenne/
 ├── index.ts
@@ -89,6 +97,7 @@ themes/maxime-lenne/
 ```
 
 ### Utilisation
+
 ```yaml
 ---
 theme: ../../themes/maxime-lenne

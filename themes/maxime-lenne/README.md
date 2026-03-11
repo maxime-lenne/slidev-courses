@@ -13,10 +13,12 @@ A custom Slidev theme based on the [maxime-lenne.fr](https://maxime-lenne.fr) de
 ## Color Palette
 
 ### Primary Colors
+
 - Primary Blue: `#2563eb`
 - Secondary Green: `#10b981`
 
 ### Gradients
+
 - Main gradient: `linear-gradient(135deg, #2563eb 0%, #10b981 100%)`
 
 ## Available Layouts
@@ -81,6 +83,7 @@ title: Your Presentation Title
 ## Custom Components & Classes
 
 ### Gradient Border
+
 ```html
 <div class="gradient-border">
   <div class="gradient-border-content">
@@ -90,6 +93,7 @@ title: Your Presentation Title
 ```
 
 ### Highlight Box
+
 ```html
 <div class="highlight-box">
   Highlighted content with gradient accent
@@ -97,11 +101,13 @@ title: Your Presentation Title
 ```
 
 ### Badge
+
 ```html
 <span class="badge">Tag</span>
 ```
 
 ### Grid Layouts
+
 ```html
 <div class="grid-2"><!-- 2 columns --></div>
 <div class="grid-3"><!-- 3 columns --></div>

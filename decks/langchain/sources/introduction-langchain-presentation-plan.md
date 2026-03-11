@@ -43,6 +43,7 @@ Créer leur premier prototype LangChain en utilisant les patterns de chaînage p
 > Diagramme: Spaghetti code vs. Chaîne claire et modulaire
 
 ### Context to Establish
+
 - Les LLMs seuls sont limités (pas d'accès aux données, pas de mémoire)
 - Construire des apps LLM nécessite beaucoup de "plumbing code"
 - LangChain résout ce problème avec des abstractions réutilisables
@@ -52,16 +53,19 @@ Créer leur premier prototype LangChain en utilisant les patterns de chaînage p
 ## Section 2: Context/Problem (1 min)
 
 ### Key Points
+
 - **Le problème du chaînage**: Comment composer plusieurs opérations LLM?
 - **Exemples de chaînes courantes**:
   - Récupérer des données → Générer un prompt → Appeler LLM → Formater résultat
   - Question utilisateur → Recherche vectorielle → Contexte → Réponse
 
 ### Visuals Needed
+
 - [ ] Diagramme: Flow d'une application LLM typique
 - [ ] Schema: Les composants qui doivent communiquer
 
 ### Talking Points
+
 - Sans framework: code répétitif, difficile à tester, difficile à maintenir
 - LangChain standardise ces patterns
 
@@ -72,12 +76,14 @@ Créer leur premier prototype LangChain en utilisant les patterns de chaînage p
 ### 3.1 Les Building Blocks (1.5 min)
 
 **Key Points:**
+
 - **Models**: Interface unifiée pour LLMs (OpenAI, Anthropic, etc.)
 - **Prompts**: Templates réutilisables et composables
 - **Output Parsers**: Structurer les réponses LLM
 - **Memory**: Maintenir le contexte entre interactions
 
 **Code Example:**
+
 ```python
 from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
@@ -92,11 +98,13 @@ prompt = PromptTemplate(
 ### 3.2 Les Chaînes (Chains) (1.5 min)
 
 **Key Points:**
+
 - SimpleChain: Une séquence linéaire d'opérations
 - SequentialChain: Passer les outputs entre étapes
 - RouterChain: Logique conditionnelle
 
 **Code Example:**
+
 ```python
 from langchain.chains import LLMChain, SimpleSequentialChain
 
@@ -115,14 +123,17 @@ overall_chain = SimpleSequentialChain(
 ### 3.3 RAG Pattern (1 min)
 
 **Key Points:**
+
 - Retrieval-Augmented Generation = Connecter LLM à vos données
 - Vector stores pour la recherche sémantique
 - Document loaders pour ingérer des sources variées
 
 **Visuals Needed:**
+
 - [ ] Diagramme: Architecture RAG (Document → Embeddings → Vector Store → Retrieval → LLM)
 
 **Code Example:**
+
 ```python
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
@@ -147,6 +158,7 @@ answer = qa_chain.run("Comment fonctionne X?")
 ### Demo Option A: Chatbot avec Mémoire
 
 **What to show:**
+
 ```python
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
@@ -166,11 +178,13 @@ conversation.predict(input="Quel est mon nom?")
 ```
 
 **Talking Points:**
+
 - La mémoire est automatiquement gérée
 - Pas besoin de manipuler manuellement l'historique
 - Différents types de mémoire disponibles (buffer, summary, vector)
 
 ### Demo Backup Plan
+
 - Screenshots préparés: [x] Notebook avec outputs
 - Recording available: [ ]
 - Explanation script: Expliquer le flow même si la démo échoue
@@ -180,11 +194,13 @@ conversation.predict(input="Quel est mon nom?")
 ## Section 5: Wrap-up (1 min)
 
 ### Key Takeaways
+
 1. **LangChain = Lego pour LLMs**: Composants réutilisables
 2. **Chaînage = Puissance**: Composer des opérations complexes simplement
 3. **Abstraction = Productivité**: Focus sur la logique, pas le plumbing
 
 ### Call to Action
+
 - Installer: `pip install langchain openai`
 - Premier exercice: Créer une chaîne simple (prompt → LLM → output parser)
 - Ressources: [LangChain docs](https://python.langchain.com/), [LangChain cookbook](https://github.com/langchain-ai/langchain/tree/master/cookbook)
@@ -255,6 +271,7 @@ conversation.predict(input="Quel est mon nom?")
 ## Presenter Checklist
 
 ### Before Presentation
+
 - [ ] Run through entire presentation (timing: 8-10 min)
 - [ ] Test all code examples in a fresh environment
 - [ ] Prepare backup screenshots for demos
@@ -263,6 +280,7 @@ conversation.predict(input="Quel est mon nom?")
 - [ ] Have requirements.txt ready if participants want to follow along
 
 ### During Presentation
+
 - [ ] Start with the hook showing the before/after comparison
 - [ ] Emphasize the "chaining" concept throughout
 - [ ] Use the diagrams to explain architecture visually
@@ -270,6 +288,7 @@ conversation.predict(input="Quel est mon nom?")
 - [ ] End with clear next steps for participants
 
 ### Lightning Talk Specific
+
 - [ ] Stay strictly on time (10 min max)
 - [ ] Cut sections if running over (reduce demo time first)
 - [ ] Practice pacing (don't rush the key concepts)
@@ -300,8 +319,8 @@ conversation.predict(input="Quel est mon nom?")
 
 ## Additional Resources to Mention
 
-- **Documentation**: https://python.langchain.com/
-- **Cookbook**: https://github.com/langchain-ai/langchain/tree/master/cookbook
+- **Documentation**: <https://python.langchain.com/>
+- **Cookbook**: <https://github.com/langchain-ai/langchain/tree/master/cookbook>
 - **LangSmith**: Platform de monitoring et debugging
 - **Community**: Discord actif avec 50k+ membres
 

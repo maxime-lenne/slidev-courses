@@ -24,6 +24,7 @@ mdc: true
 Une base relationnelle sépare les données en plusieurs tables.
 
 Pour analyser :  
+
 - les commandes  
 - les clients  
 - les produits  
@@ -49,7 +50,6 @@ layout: two-cols
 ---
 
 # Types of JOINs
-
 
 **INNER JOIN**: Returns matching rows from both tables
 
@@ -223,6 +223,7 @@ SELECT *
 FROM A
 RIGHT JOIN B ON A.key = B.key
 ```
+
 ---
 
 # FULL OUTER JOIN
@@ -260,13 +261,11 @@ RIGHT JOIN B ON A.key = B.key
 # CROSS JOIN
 ## Produit cartésien (tout × tout)
 
-
 ```sql
 SELECT *
 FROM table1
 CROSS JOIN table2
 ```
-
 
 ---
 
@@ -287,6 +286,7 @@ CROSS JOIN table2
 ### Combiner plusieurs JOINS
 
 Exemples de problèmes possibles :
+
 - Trouver les clients sans commandes  
 - Trouver les produits jamais vendus  
 - Lister les ventes avec client + produit + catégorie  
@@ -298,10 +298,10 @@ Exemples de problèmes possibles :
 ### Une sous-requête = un SELECT **à l’intérieur** d’un autre SELECT.
 
 Permet par exemple :
+
 - Filtrer selon un résultat calculé  
 - Chercher des valeurs maximales  
 - Comparer une ligne à un ensemble de lignes  
-
 
 ---
 
@@ -321,6 +321,7 @@ WHERE id IN (
 <v-click>
 
 **Alternative with JOIN:**
+
 ```sql
 SELECT DISTINCT u.name, u.email
 FROM users u
@@ -345,6 +346,7 @@ WHERE o.total > 1000;
 # GROUP BY — Pourquoi ?
 
 GROUP BY permet :
+
 - de *regrouper* les lignes  
 - de calculer des *statistiques* par groupe  
   (par ville, par client, par produit…)
@@ -353,6 +355,7 @@ GROUP BY permet :
 
 # Fonctions d’agrégation
 Les plus courantes :
+
 - `COUNT()`  
 - `SUM()`  
 - `AVG()`  

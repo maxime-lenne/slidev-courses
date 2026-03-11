@@ -84,6 +84,7 @@ def create_user(nom: str, email: str, db = Depends(get_db)):
 <v-click>
 
 **Problèmes :**
+
 - Impossible à tester indépendamment
 - Logique dupliquée si réutilisée ailleurs
 - Un seul changement casse tout
@@ -500,7 +501,6 @@ layout: section
 
 Ressources, verbes HTTP et codes de statut
 
-
 <v-click>
 
 | Règle | Exemple |
@@ -615,6 +615,7 @@ raise HTTPException(409, "Déjà inscrit à cette session")
 | `500` | Erreur serveur | Bug non anticipé |
 
 **Principe clé :**
+
 - `4xx` → faute du **client**
 - `5xx` → faute du **serveur**
 
@@ -683,6 +684,7 @@ def get_me(current_user: User = Depends(get_current_user)):
 <v-click>
 
 **Avantages de Depends :**
+
 - La session DB est automatiquement fermée après la requête (même en cas d'erreur)
 - Testable : on peut remplacer `get_db` par une DB de test dans les tests
 - Réutilisable : une dépendance peut être partagée entre plusieurs routes
@@ -1360,12 +1362,14 @@ layout: end
 <div>
 
 **Documentation officielle**
+
 - [fastapi.tiangolo.com](https://fastapi.tiangolo.com/) — tutoriels complets
 - [docs.pydantic.dev](https://docs.pydantic.dev/latest/) — Pydantic v2
 - [sqlmodel.tiangolo.com](https://sqlmodel.tiangolo.com/) — SQLModel
 - [alembic.sqlalchemy.org](https://alembic.sqlalchemy.org/) — migrations
 
 **Tests**
+
 - [docs.pytest.org](https://docs.pytest.org/) — pytest
 - [fastapi.tiangolo.com/tutorial/testing](https://fastapi.tiangolo.com/tutorial/testing/) — TestClient
 
@@ -1374,10 +1378,12 @@ layout: end
 <div>
 
 **Outils**
+
 - [httpie.io](https://httpie.io/) — client HTTP en ligne de commande
 - [hoppscotch.io](https://hoppscotch.io/) — alternative Postman open-source
 
 **Pour aller plus loin**
+
 - Authentification JWT avec `python-jose`
 - Background tasks avec FastAPI
 - WebSockets avec FastAPI

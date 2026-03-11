@@ -17,7 +17,6 @@ Project task tracking.
 - taille des slides
 - deploiement sur github pages
 
-
 ## Completed
 
 - [x] workflow release doit déclencher la mise à jour du changelog et l'ajouter à la release github

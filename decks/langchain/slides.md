@@ -179,7 +179,7 @@ Le "plumbing code" est géré par LangChain
 - **Les LLMs seuls sont limités**
   - Gérer le contexte et la mémoire
   - Créer des agents
-  - Connecter les LLMs au monde extérieur : 
+  - Connecter les LLMs au monde extérieur :
   RAG (Retrieval-Augmented Generation), appels d'APIs, outils, bases vectorielles
 
 - **Construire des apps IA = beaucoup de "plumbing code"**
@@ -1078,20 +1078,25 @@ layout: two-cols-header
 ::left::
 
 **OpenAI Agents SDK** *(OpenAI, mars 2025)*
+
 - Successeur de Swarm — 100+ LLMs via API compatible, tracing intégré
 
 **Claude Agent SDK** *(Anthropic)*
+
 - Primitives minimalistes (`Agent`, `Runner`, `Tool`) — accès direct au tool-calling Anthropic
 
 **Google ADK** *(Google Cloud NEXT 2025)*
+
 - Gemini-native, streaming audio/vidéo, connecteurs BigQuery/AlloyDB
 
 ::right::
 
 **Semantic Kernel** + **AutoGen** → **Microsoft Agent Framework** *(Q1 2026)*
+
 - Fusion des deux : C#/Python/Java, Azure-native, multi-agent conversationnel
 
 **CrewAI**
+
 - Agents avec **rôles** + **tasks** explicites, orchestration d'une "équipe"
 
 <!--
@@ -1108,20 +1113,25 @@ layout: two-cols-header
 ::left::
 
 **LlamaIndex**
+
 - Data-first : query engines, RAG avancé (HyDE, re-ranking, sub-question decomposition)
 
 **Haystack** *(deepset)*
+
 - Pipelines YAML déclaratifs, composants versionnés — fort sur search/QA documentaire
 
 **Pydantic AI** *(équipe Pydantic)*
+
 - Type-safe, IDE-friendly, schema validation stricte — production-grade multi-provider
 
 ::right::
 
 **smolagents** *(Hugging Face)*
+
 - Code-first : l'agent écrit et exécute du Python — minimal, edge, modèles open-source
 
 **DSPy** *(Stanford)*
+
 - Optimisation **programmatique** des prompts — pas de prompt engineering manuel, eval-driven
 
 <!--

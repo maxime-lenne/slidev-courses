@@ -59,6 +59,7 @@ layout: two-cols
 - Oracle
 
 **Avantages** :
+
 - ACID compliance
 - Schéma strict
 - Requêtes complexes
@@ -73,6 +74,7 @@ layout: two-cols
 - Neo4j
 
 **Avantages** :
+
 - Flexibilité
 - Scalabilité horizontale
 - Performance
@@ -87,9 +89,9 @@ layout: default
 
 | id | nom | email | age |
 |----|-----|-------|-----|
-| 1 | Alice | alice@example.com | 25 |
-| 2 | Bob | bob@example.com | 30 |
-| 3 | Charlie | charlie@example.com | 28 |
+| 1 | Alice | <alice@example.com> | 25 |
+| 2 | Bob | <bob@example.com> | 30 |
+| 3 | Charlie | <charlie@example.com> | 28 |
 
 <div class="grid-2 mt-4">
   <div class="gradient-border">
@@ -331,11 +333,11 @@ Exercices pratiques avec SQLite
 
 ---
 layout: cover
-background: https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920
+background: <https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920>
 ---
 
 # Merci !
 
 ## Questions ?
 
-📧 contact@maxime-lenne.fr
+📧 <contact@maxime-lenne.fr>

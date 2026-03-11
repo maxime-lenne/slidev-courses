@@ -11,6 +11,7 @@ subtitle: Jointures • Sous-requêtes • Group By
 ---
 
 # 🎯 Objectifs pédagogiques
+
 - Comprendre les relations entre tables  
 - Reproduire puis adapter des requêtes avec jointures  
 - Découvrir GROUP BY et l’agrégation  
@@ -21,10 +22,12 @@ subtitle: Jointures • Sous-requêtes • Group By
 # 🧭 Programme du jour
 
 ## Matin
+
 - Cours : **JOINS**, **GROUP BY**, **HAVING**  
 - Atelier : *Visualiser la base* (schéma tables & relations)
 
 ## Après-midi
+
 - **Mise en situation n°2 : analyse des ventes**
 - Reproduction de 3 requêtes fournies
 - Adaptation de 2 requêtes (niveau 2)
@@ -35,6 +38,7 @@ subtitle: Jointures • Sous-requêtes • Group By
 Une base relationnelle sépare les données en plusieurs tables.
 
 Pour analyser :  
+
 - les commandes  
 - les clients  
 - les produits  
@@ -47,6 +51,7 @@ Pour analyser :
 ### JOIN = relier deux tables sur leur relation logique.
 
 Exemple (concept) :
+
 ```
 clients.id = commandes.client_id
 ```
@@ -81,6 +86,7 @@ Tout des deux côtés.
 ### Combiner plusieurs JOINS
 
 Exemples de problèmes possibles :
+
 - Trouver les clients sans commandes  
 - Trouver les produits jamais vendus  
 - Lister les ventes avec client + produit + catégorie  
@@ -92,6 +98,7 @@ Exemples de problèmes possibles :
 ### Une sous-requête = un SELECT **à l’intérieur** d’un autre SELECT.
 
 Permet par exemple :
+
 - Filtrer selon un résultat calculé  
 - Chercher des valeurs maximales  
 - Comparer une ligne à un ensemble de lignes  
@@ -111,6 +118,7 @@ Permet par exemple :
 # 🟩 GROUP BY — Pourquoi ?
 
 GROUP BY permet :
+
 - de *regrouper* les lignes  
 - de calculer des *statistiques* par groupe  
   (par ville, par client, par produit…)
@@ -119,6 +127,7 @@ GROUP BY permet :
 
 # 🟩 Fonctions d’agrégation
 Les plus courantes :
+
 - `COUNT()`  
 - `SUM()`  
 - `AVG()`  
@@ -137,11 +146,13 @@ HAVING → filtre **après** agrégation
 # 🛠️ Atelier du matin : Visualiser la base
 
 Fournir aux apprenants :
+
 - un schéma tables → colonnes  
 - les relations PK / FK  
 - exemple : clients — commandes — produits  
 
 Objectifs :
+
 - comprendre les liens  
 - identifier les clés étrangères  
 - repérer les jointures à faire  
@@ -158,11 +169,13 @@ Objectif :
 
 # 🔥 MS2 — Partie 1 : Reproduire 3 requêtes
 Le formateur fournit 3 requêtes :
+
 - total des ventes  
 - nombre de commandes par client  
 - panier moyen  
 
 Les apprenants doivent :
+
 1. comprendre  
 2. reproduire  
 3. valider avec les données réelles
@@ -172,6 +185,7 @@ Les apprenants doivent :
 # 🔥 MS2 — Partie 2 : Adapter 2 requêtes (niveau 2)
 
 Exemples d'adaptations :
+
 - filtrer par ville  
 - filtrer par période  
 - calculer un top 3  
@@ -179,6 +193,7 @@ Exemples d'adaptations :
 - combiner des conditions  
 
 Objectifs :
+
 - réutiliser les JOINS  
 - introduire l’idée “adapter = modifier les paramètres du problème”  
 

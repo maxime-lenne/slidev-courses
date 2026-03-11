@@ -38,11 +38,13 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 > "Imaginez que vous êtes dans un restaurant. Vous ne pouvez pas entrer en cuisine et préparer votre plat vous-même. Vous utilisez un **serveur** (API) qui prend votre **commande** (requête), va en cuisine (système backend), et vous rapporte votre **plat** (réponse). Les API fonctionnent exactement de la même manière !"
 
 ### Context to Establish
+
 - Nous utilisons des API tous les jours sans le savoir
 - Chaque application mobile, site web moderne utilise des dizaines d'API
 - C'est le "ciment" invisible qui lie le web moderne
 
 ### Talking Points
+
 - Montrer que les API ne sont pas mystérieuses
 - Établir une analogie mémorable dès le début
 - Créer de l'enthousiasme pour le sujet
@@ -52,17 +54,20 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 ## Section 2: Qu'est-ce qu'une API ? (5 min)
 
 ### Key Points
+
 - **API = Application Programming Interface**
 - Interface de communication entre systèmes logiciels
 - Contrat qui définit comment demander et recevoir des données
 - Abstraction qui cache la complexité interne
 
 ### Visuals Needed
+
 - [ ] Diagramme : Client ↔ API ↔ Server
 - [ ] Schéma : Comparaison Restaurant vs API
 - [ ] Liste : Exemples d'usage quotidien (météo app, réseaux sociaux, paiement)
 
 ### Talking Points
+
 - L'API expose uniquement ce qui est nécessaire
 - Le client n'a pas besoin de connaître l'implémentation
 - Permet l'interopérabilité entre technologies différentes
@@ -72,6 +77,7 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 ## Section 3: HTTP et Méthodes (7 min)
 
 ### Key Points
+
 - **HTTP** : protocole de communication du web
 - Les **verbes HTTP** : GET, POST, PUT, PATCH, DELETE
 - Structure d'une requête : URL, headers, body
@@ -88,11 +94,13 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 | DELETE | Supprimer | Retirer un compte |
 
 ### Visuals Needed
+
 - [ ] Tableau récapitulatif des méthodes HTTP
 - [ ] Exemple d'URL avec paramètres : `https://api.example.com/users?limit=10`
 - [ ] Anatomie d'une requête HTTP (headers, body)
 
 ### Talking Points
+
 - GET est en lecture seule (safe & idempotent)
 - POST crée, PUT/PATCH modifie
 - Les codes de statut HTTP (voir section suivante)
@@ -105,35 +113,41 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 ### Key Points
 
 #### REST (REpresentational State Transfer)
+
 - Le plus populaire et standard
 - Utilise HTTP et ses méthodes
 - Ressources identifiées par URL
 - Stateless (sans état)
 
 #### GraphQL
+
 - Langage de requête pour API
 - Le client demande exactement les données dont il a besoin
 - Une seule endpoint
 - Évite over-fetching et under-fetching
 
 #### SOAP
+
 - Plus ancien, encore utilisé en entreprise
 - Basé sur XML
 - Protocole strict et verbeux
 - Utilisé dans systèmes legacy
 
 #### MCP (Model Context Protocol)
+
 - Protocole moderne pour l'interfaçage avec des systèmes
 - Standard émergent pour connecter des modèles d'IA
 - Architecture client-serveur
 - Alternative aux API REST pour certains cas d'usage
 
 ### Visuals Needed
+
 - [ ] Tableau comparatif : REST vs GraphQL vs SOAP vs MCP
 - [ ] Exemple de requête REST vs GraphQL
 - [ ] Diagramme : Architecture REST (ressources, endpoints)
 
 ### Talking Points
+
 - REST domine le web moderne (80%+ des API publiques)
 - GraphQL pour des besoins complexes de requêtage
 - SOAP encore présent en entreprise pour raisons historiques
@@ -146,6 +160,7 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 ### Formats de Données
 
 #### JSON (JavaScript Object Notation)
+
 - Format standard pour les API REST modernes
 - Léger, lisible par humains et machines
 - Types de base : string, number, boolean, array, object, null
@@ -173,28 +188,33 @@ Commencer à explorer et utiliser des API publiques (GitHub, OpenWeather, etc.) 
 ### Outils pour Tester les API
 
 #### curl (ligne de commande)
+
 ```bash
 curl https://api.github.com/users/octocat
 ```
 
 #### Postman / Insomnia
+
 - Interface graphique
 - Collections de requêtes
 - Tests automatisés
 - Collaboration en équipe
 
 #### HTTPie
+
 - Alternative moderne à curl
 - Syntaxe plus intuitive
 - Coloration syntaxique
 
 ### Visuals Needed
+
 - [ ] Exemple de JSON bien formaté
 - [ ] Capture d'écran : Postman avec une requête
 - [ ] Tableau des codes HTTP courants
 - [ ] Screenshot : curl dans le terminal
 
 ### Talking Points
+
 - JSON est devenu le standard de facto
 - Les codes HTTP sont essentiels pour le debugging
 - curl est universel mais Postman est plus convivial
@@ -207,17 +227,20 @@ curl https://api.github.com/users/octocat
 ### Stratégies de Versioning
 
 #### Dans l'URL
+
 ```
 https://api.example.com/v1/users
 https://api.example.com/v2/users
 ```
 
 #### Dans les Headers
+
 ```
 Accept: application/vnd.api+json; version=1
 ```
 
 #### Sous-domaine
+
 ```
 https://v1.api.example.com/users
 ```
@@ -226,17 +249,19 @@ https://v1.api.example.com/users
 
 | API | Usage | Versioning |
 |-----|-------|-----------|
-| GitHub API | Repos, issues, users | https://api.github.com (header version) |
-| OpenWeather | Météo mondiale | https://api.openweathermap.org/data/2.5 |
-| Stripe | Paiements | https://api.stripe.com/v1 |
-| Twitter/X API | Tweets, timelines | https://api.twitter.com/2 |
+| GitHub API | Repos, issues, users | <https://api.github.com> (header version) |
+| OpenWeather | Météo mondiale | <https://api.openweathermap.org/data/2.5> |
+| Stripe | Paiements | <https://api.stripe.com/v1> |
+| Twitter/X API | Tweets, timelines | <https://api.twitter.com/2> |
 
 ### Visuals Needed
+
 - [ ] Screenshots : Réponse réelle de GitHub API
 - [ ] Tableau : API populaires et leurs caractéristiques
 - [ ] Diagramme : Stratégies de versioning
 
 ### Talking Points
+
 - Le versioning permet d'évoluer sans casser les clients existants
 - GitHub API est un excellent exemple à étudier
 - Commencer simple : utilisez une API publique sans auth
@@ -256,16 +281,19 @@ https://v1.api.example.com/users
 ### Call to Action
 
 **Cette semaine :**
+
 - [ ] Essayez l'API GitHub : `curl https://api.github.com/users/VOTRE_USERNAME`
 - [ ] Installez Postman et explorez une API publique
 - [ ] Lisez la doc d'une API qui vous intéresse
 
 ### Resources
+
 - **API publiques sans auth** : [public-apis.io](https://public-apis.io)
 - **Documentation GitHub API** : docs.github.com/rest
 - **Tutoriel REST** : restfulapi.net
 
 ### Visuals Needed
+
 - [ ] QR Code vers ressources
 - [ ] Slide récapitulatif "What's Next?"
 
@@ -274,8 +302,9 @@ https://v1.api.example.com/users
 ## Diagrams to Create
 
 ### 1. **Architecture Client-API-Server** - Vue d'ensemble
-   - Type: Mermaid sequence diagram
-   - Key elements: Client, API Gateway, Backend Services, Database
+
+- Type: Mermaid sequence diagram
+- Key elements: Client, API Gateway, Backend Services, Database
 
 ```mermaid
 sequenceDiagram
@@ -293,21 +322,24 @@ sequenceDiagram
 ```
 
 ### 2. **Méthodes HTTP CRUD** - Mapping
-   - Type: Mermaid flowchart
-   - Key elements: GET → Read, POST → Create, PUT/PATCH → Update, DELETE → Delete
+
+- Type: Mermaid flowchart
+- Key elements: GET → Read, POST → Create, PUT/PATCH → Update, DELETE → Delete
 
 ### 3. **Comparaison REST vs GraphQL** - Side-by-side
-   - Type: Simple comparison diagram
-   - Key elements: Multiple endpoints vs Single endpoint, Over-fetching vs Precise queries
+
+- Type: Simple comparison diagram
+- Key elements: Multiple endpoints vs Single endpoint, Over-fetching vs Precise queries
 
 ---
 
 ## Code Examples to Include
 
 ### 1. **Requête GET simple** (bash/curl)
-   - Purpose: Démontrer la simplicité d'une requête
-   - Lines to highlight: URL structure, response status
-   - Progressive reveal: No
+
+- Purpose: Démontrer la simplicité d'une requête
+- Lines to highlight: URL structure, response status
+- Progressive reveal: No
 
 ```bash
 curl -i https://api.github.com/users/octocat
@@ -323,9 +355,10 @@ curl -i https://api.github.com/users/octocat
 ```
 
 ### 2. **Requête POST avec données** (bash/curl)
-   - Purpose: Montrer comment envoyer des données
-   - Lines to highlight: -X POST, -H Content-Type, -d data
-   - Progressive reveal: Yes (ajouter les options une par une)
+
+- Purpose: Montrer comment envoyer des données
+- Lines to highlight: -X POST, -H Content-Type, -d data
+- Progressive reveal: Yes (ajouter les options une par une)
 
 ```bash
 curl -X POST https://api.example.com/users \
@@ -334,9 +367,10 @@ curl -X POST https://api.example.com/users \
 ```
 
 ### 3. **Exemple de JSON Response** (json)
-   - Purpose: Structure typique d'une réponse API
-   - Lines to highlight: status, data, metadata
-   - Progressive reveal: No
+
+- Purpose: Structure typique d'une réponse API
+- Lines to highlight: status, data, metadata
+- Progressive reveal: No
 
 ```json
 {
@@ -383,6 +417,7 @@ curl -X POST https://api.example.com/users \
 ## Presenter Checklist
 
 ### Before Presentation
+
 - [ ] Tester tous les exemples curl dans le terminal
 - [ ] Vérifier que les API publiques sont accessibles (GitHub, OpenWeather)
 - [ ] Avoir Postman ouvert en backup pour demo rapide
@@ -392,6 +427,7 @@ curl -X POST https://api.example.com/users \
 - [ ] Fermer applications non nécessaires
 
 ### During Presentation
+
 - [ ] Commencer avec l'analogie du restaurant (hook)
 - [ ] Garder le rythme soutenu (30 min passe vite)
 - [ ] Faire des pauses après chaque section majeure
@@ -400,6 +436,7 @@ curl -X POST https://api.example.com/users \
 - [ ] Pointer régulièrement vers les ressources pour approfondir
 
 ### Technical Setup
+
 - [ ] Terminal prêt avec historique curl
 - [ ] Postman installé et configuré
 - [ ] Connection internet stable
@@ -443,16 +480,19 @@ curl -X POST https://api.example.com/users \
 ## Speaker Notes
 
 ### Energy Management
+
 - **Minutes 0-10** : Haute énergie, enthousiasme pour capter l'attention
 - **Minutes 10-20** : Maintenir le rythme, exemples concrets
 - **Minutes 20-30** : Terminer fort, inspiration et call to action
 
 ### Interaction Points
+
 - **Minute 3** : "Qui a déjà utilisé une API ? Levez la main"
 - **Minute 15** : "Questions sur les méthodes HTTP ?"
 - **Minute 25** : "Quelle API voudriez-vous essayer ?"
 
 ### Fallback Plans
+
 - Si internet coupé : utiliser screenshots préparés
 - Si curl ne marche pas : montrer dans Postman
 - Si manque de temps : skip section SOAP/MCP (moins critique)
@@ -464,6 +504,7 @@ _Plan created: 2026-01-10_
 _Ready for slide generation: [ ]_
 
 **Next steps:**
+
 1. Review this plan and make any adjustments
 2. When satisfied, run: `/slidev:from-plan api-presentation-plan.md` to generate slides
 3. Or manually create slides based on this structure

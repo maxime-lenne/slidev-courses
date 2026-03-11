@@ -59,11 +59,13 @@ layout: default
 Le layout le plus basique pour afficher tout type de contenu.
 
 ## Utilisation
+
 ```yaml
 layout: default
 ```
 
 ## Caractéristiques
+
 - Padding et marges optimisés
 - Parfait pour le contenu standard
 - Le plus utilisé
@@ -196,6 +198,7 @@ En-tête pleine largeur suivi de deux colonnes
 ## Colonne 1
 
 Contenu de la première colonne avec liste :
+
 - Item A
 - Item B
 - Item C
@@ -213,7 +216,7 @@ Contenu de la deuxième colonne
 
 ---
 layout: image-right
-image: https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800
+image: <https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800>
 ---
 
 # Layout: Image Right
@@ -228,13 +231,14 @@ image: url-de-votre-image
 ```
 
 Parfait pour :
+
 - Présenter un produit
 - Montrer des screenshots
 - Illustrer un concept
 
 ---
 layout: image-left
-image: https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800
+image: <https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800>
 ---
 
 # Layout: Image Left
@@ -246,13 +250,14 @@ Image à gauche, contenu à droite
 </div>
 
 **Avantages:**
+
 - Asymétrie visuelle
 - Meilleure attention
 - Contexte visuel
 
 ---
 layout: image
-image: https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200
+image: <https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200>
 backgroundSize: cover
 ---
 
@@ -262,7 +267,7 @@ Image en fond plein écran avec texte par-dessus
 
 ---
 layout: iframe-right
-url: https://sli.dev
+url: <https://sli.dev>
 ---
 
 # Layout: Iframe Right
@@ -277,13 +282,14 @@ url: https://example.com
 ```
 
 Parfait pour :
+
 - Démos live
 - Documentation web
 - Sites web
 
 ---
 layout: iframe
-url: https://sli.dev
+url: <https://sli.dev>
 ---
 
 ---

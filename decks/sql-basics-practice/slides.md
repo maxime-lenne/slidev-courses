@@ -19,6 +19,7 @@ Base fournie : **formation.db**
 ---
 
 # 🎯 Objectifs pédagogiques
+
 - Installer SQLite (macOS / Linux / Windows)
 - Ouvrir et explorer une base existante
 - Utiliser la ligne de commande SQLite
@@ -37,6 +38,7 @@ Téléchargez la base SQLite :
 ## macOS
 
 SQLite est **déjà installé**. Vérifier la version :
+
 ```bash
 sqlite3 --version
 ```
@@ -44,6 +46,7 @@ sqlite3 --version
 ## Linux
 
 Installer si besoin (Souvent préinstallé.) :
+
 ```bash
 sudo apt install sqlite3
 ```
@@ -53,11 +56,13 @@ sudo apt install sqlite3
 # 🚀 Installation de SQLite
 
 ## Windows
+
 1. Télécharger `sqlite-tools` depuis sqlite.org  
 2. Extraire l’archive  
 3. (Optionnel) Ajouter le dossier au PATH  
 
 Vérifier :
+
 ```powershell
 sqlite3 --version
 ```
@@ -67,22 +72,26 @@ sqlite3 --version
 # 🛠️ Démarrer avec SQLite (CLI)
 
 ## Ouvrir la base fournie
+
 ```bash
 sqlite3 formation.db
 ```
 
 ## Commandes utiles
 Lister les tables :
+
 ```sql
 .tables
 ```
 
 Voir la structure :
+
 ```sql
 .schema clients
 ```
 
 Quitter SQLite :
+
 ```
 .quit
 ```
@@ -91,7 +100,6 @@ Quitter SQLite :
 
 # 🧪 Exercices SQL — SELECT
 ### *But : découvrir et lire les données*
-
 
 - Afficher **tous les clients**.
 - Afficher les **noms et villes** des clients.
@@ -102,15 +110,14 @@ Quitter SQLite :
 - Afficher le **montant et la date** des commandes.
 - Trier les commandes de la **plus chère à la moins chère**.
 
-### BONUS : 
+### BONUS :
 
 - Compter le **nombre total** de clients.
 - Requête JOIN simple : afficher les commandes avec nom client
 
-
 ---
 
-# ✍️ Exercices SQL — INSERT / UPDATE / DELETE 
+# ✍️ Exercices SQL — INSERT / UPDATE / DELETE
 ### *But : manipuler et modifier les données*
 
 - INSERT : Ajouter un client
@@ -128,13 +135,13 @@ Quitter SQLite :
 
 ---
 
-# ✍️ Exercices SQL — INSERT / UPDATE / DELETE 
+# ✍️ Exercices SQL — INSERT / UPDATE / DELETE
 ### *But : manipuler et modifier les données*
 
-### BONUS : 
+### BONUS :
+
 - DELETE via sous-requête - Supprimer toutes les commandes du client **“David Moreau”**.
 - UPDATE ciblé - Réduire de **20%** toutes les commandes du client **“Camille Leroy”**.
-
 
 ---
 layout: center

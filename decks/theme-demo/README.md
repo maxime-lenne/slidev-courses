@@ -9,6 +9,7 @@ Ce dossier contient plusieurs présentations de démonstration du thème Maxime 
 Présentation axée sur SQL et les bases de données.
 
 **Contenu:**
+
 - Layouts: cover, section, default, two-cols, center, fact, quote
 - Composants personnalisés: highlight-box, gradient-border, badges, grid-3
 - Tableaux SQL
@@ -16,6 +17,7 @@ Présentation axée sur SQL et les bases de données.
 - Diagramme ER (Entity-Relationship)
 
 **Pour tester:**
+
 ```bash
 npm run dev:deck theme-demo
 ```
@@ -27,6 +29,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 **Contenu:**
 
 #### 📐 Layouts (17 testés)
+
 - ✅ `cover` - Page de couverture
 - ✅ `intro` - Introduction
 - ✅ `section` - Diviseur de section
@@ -46,6 +49,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 - ✅ `none` - Sans style
 
 #### 🧩 Built-in Components
+
 - ✅ `Arrow` - Flèches entre éléments
 - ✅ `AutoFitText` - Texte auto-ajustable
 - ✅ `SlideCurrentNo` - Numéro slide actuel
@@ -61,6 +65,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 - ✅ `Link` - Navigation inter-slides
 
 #### 📝 Éléments Markdown
+
 - ✅ Tous les niveaux de titres (h1-h6)
 - ✅ Texte en gras, italique, barré
 - ✅ Listes ordonnées, non-ordonnées, tâches
@@ -74,6 +79,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 - ✅ Emojis et icônes Carbon
 
 #### 📊 Diagrammes Mermaid
+
 - ✅ Flowchart
 - ✅ Sequence Diagram
 - ✅ State Diagram
@@ -81,6 +87,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 - ✅ ER Diagram
 
 #### ✨ Fonctionnalités Avancées
+
 - ✅ Grilles personnalisées (grid-2, grid-3, grid-4)
 - ✅ Composants Vue inline avec state
 - ✅ Classes UnoCSS personnalisées
@@ -89,6 +96,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 - ✅ Composants personnalisés du thème
 
 **Pour tester:**
+
 ```bash
 cd /Users/maxime-lenne/Documents_Non_iCloud/workspace_js_ts/slidev-simplon-sql-1st-day
 npx slidev decks/theme-demo/test-complete.md
@@ -109,6 +117,7 @@ npx slidev decks/theme-demo/test-complete.md
 ## Utilisation
 
 ### Lancer slides.md
+
 ```bash
 # Depuis la racine du projet
 npm run dev:deck theme-demo
@@ -118,6 +127,7 @@ npx slidev decks/theme-demo/slides.md
 ```
 
 ### Lancer test-complete.md
+
 ```bash
 # Avec npx
 npx slidev decks/theme-demo/test-complete.md --port 3031
@@ -128,6 +138,7 @@ npx slidev decks/theme-demo/test-complete.md --port 3031
 Utiliser `test-complete.md` pour vérifier :
 
 ### Visuels
+
 - [ ] Dégradés bleu-vert affichés correctement
 - [ ] Titres avec effet gradient
 - [ ] Layouts cover et section avec effets lumineux
@@ -135,24 +146,28 @@ Utiliser `test-complete.md` pour vérifier :
 - [ ] Code blocks bien stylisés
 
 ### Navigation
+
 - [ ] Transitions fluides entre slides
 - [ ] Composant Link fonctionne
 - [ ] Numéros de slides corrects
 - [ ] Table des matières générée
 
 ### Animations
+
 - [ ] v-click animations au clic
 - [ ] v-drag éléments déplaçables
 - [ ] Arrow affichée correctement
 - [ ] Animations CSS (bounce, pulse, spin)
 
 ### Composants
+
 - [ ] highlight-box avec bordure gradient
 - [ ] gradient-border autour des cartes
 - [ ] badges avec fond gradient
 - [ ] grids (grid-2, grid-3, grid-4)
 
 ### Diagrammes
+
 - [ ] Mermaid flowchart rendu
 - [ ] Mermaid sequence diagram
 - [ ] Mermaid state diagram
@@ -160,11 +175,13 @@ Utiliser `test-complete.md` pour vérifier :
 - [ ] Mermaid ER diagram
 
 ### Responsive
+
 - [ ] Texte s'adapte aux tailles d'écran
 - [ ] Grilles responsive fonctionnent
 - [ ] Images s'adaptent
 
 ### Mode Sombre/Clair
+
 - [ ] Switch entre modes fonctionne
 - [ ] Couleurs s'adaptent
 - [ ] LightOrDark component fonctionne

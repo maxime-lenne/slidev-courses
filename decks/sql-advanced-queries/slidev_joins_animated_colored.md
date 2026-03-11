@@ -13,6 +13,7 @@ transition: fade
 transition: slide-left
 
 # Notation
+
 - Table **A** = cercle gauche <span v-click>🟢</span>
 - Table **B** = cercle droit <span v-click>🟢</span>
 - Zones **vertes** = **incluses** dans le résultat <span v-click>✅</span>

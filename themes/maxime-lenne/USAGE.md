@@ -15,11 +15,13 @@ theme: ../../themes/maxime-lenne
 Le thème utilise le système de couleurs du site maxime-lenne.fr :
 
 ### Couleurs principales
+
 - **Bleu primaire** : `#2563eb` → utilisé pour les accents principaux
 - **Vert secondaire** : `#10b981` → utilisé pour les accents secondaires
 - **Dégradé signature** : `linear-gradient(135deg, #2563eb 0%, #10b981 100%)`
 
 ### Couleurs de statut
+
 - Succès : `#10b981` (vert)
 - Warning : `#f59e0b` (orange)
 - Erreur : `#ef4444` (rouge)
@@ -41,6 +43,7 @@ Auteur, date, etc.
 ```
 
 **Caractéristiques** :
+
 - Fond avec dégradé bleu-vert
 - Texte centré
 - Effet de lumière radiale
@@ -58,6 +61,7 @@ Introduction à cette partie
 ```
 
 **Caractéristiques** :
+
 - Fond avec dégradé et effets lumineux
 - Texte blanc centré
 - Parfait pour séparer les parties
@@ -75,6 +79,7 @@ Contenu normal de la slide
 ```
 
 **Caractéristiques** :
+
 - Marges et padding optimisés
 - Titres avec dégradé
 - Le plus utilisé pour le contenu
@@ -134,6 +139,7 @@ Taux de satisfaction
 ```
 
 **Caractéristiques** :
+
 - Texte très grand (text-9xl)
 - Centré verticalement et horizontalement
 
@@ -244,6 +250,7 @@ console.log(greeting)
 ```
 
 **Caractéristiques** :
+
 - En-tête avec fond dégradé
 - Lignes au survol avec changement de couleur
 

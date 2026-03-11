@@ -12,6 +12,7 @@ Base fournie : **formation.db**
 ---
 
 # 🎯 Objectifs pédagogiques
+
 - Installer SQLite (macOS / Linux / Windows)
 - Ouvrir et explorer une base existante
 - Utiliser la ligne de commande SQLite
@@ -33,6 +34,7 @@ Téléchargez la base SQLite :
 SQLite est **déjà installé**.
 
 Vérifier la version :
+
 ```bash
 sqlite3 --version
 ```
@@ -42,6 +44,7 @@ sqlite3 --version
 ## Linux
 Souvent préinstallé.  
 Installer si besoin :
+
 ```bash
 sudo apt install sqlite3
 ```
@@ -49,11 +52,13 @@ sudo apt install sqlite3
 ---
 
 ## Windows
+
 1. Télécharger `sqlite-tools` depuis sqlite.org  
 2. Extraire l’archive  
 3. (Optionnel) Ajouter le dossier au PATH  
 
 Vérifier :
+
 ```powershell
 sqlite3 --version
 ```
@@ -65,6 +70,7 @@ sqlite3 --version
 ---
 
 ## Ouvrir la base fournie
+
 ```bash
 sqlite3 formation.db
 ```
@@ -73,21 +79,25 @@ sqlite3 formation.db
 
 ## Commandes utiles
 Lister les tables :
+
 ```sql
 .tables
 ```
 
 Voir la structure :
+
 ```sql
 .schema clients
 ```
 
 Lire des données :
+
 ```sql
 SELECT * FROM clients LIMIT 5;
 ```
 
 Quitter SQLite :
+
 ```
 .quit
 ```
@@ -146,6 +156,7 @@ Compter le **nombre total** de clients.
 
 ## Exercice 10  
 Afficher pour chaque commande :  
+
 - nom du client  
 - montant  
 - date  
@@ -166,6 +177,7 @@ Ajouter un client :
 
 ## Exercice 12 — INSERT multiple  
 Ajouter les produits :  
+
 - Clé USB 32Go – 12.90  
 - Tapis de souris – 7.50  
 - Microphone USB – 39.00  

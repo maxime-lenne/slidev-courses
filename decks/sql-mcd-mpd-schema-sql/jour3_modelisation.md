@@ -32,6 +32,7 @@ transition: slide-left
 # 🧩 Partie 1 — Modélisation MERISE
 
 ## MERISE = 3 niveaux
+
 1. **MCD — Modèle Conceptuel des Données**  
 2. **MLD — Modèle Logique des Données**  
 3. **MPD — Modèle Physique des Données**  
@@ -43,12 +44,14 @@ transition: appear
 # 🟦 MCD — Modèle conceptuel des données
 
 ### But :
+
 - Décrire **les entités**  
 - Décrire **les relations**  
 - Définir **les cardinalités**  
 - Pas de considération technique
 
 ### Exemple simple :
+
 ```
 CLIENT (id, nom, ville, age)
 COMMANDE (id, date)
@@ -66,12 +69,14 @@ transition: slide-left
 # 🟦 Cardinalités MERISE
 
 ### Types :
+
 - **(0,1)** optionnel  
 - **(1,1)** obligatoire  
 - **(0,n)** plusieurs optionnels  
 - **(1,n)** plusieurs obligatoires  
 
 ### Exemple :
+
 ```
 CLIENT (1,n) COMMANDE
 → un client peut avoir plusieurs commandes
@@ -87,6 +92,7 @@ transition: slide-left
 Transforme les entités et relations en **tables + clés étrangères**.
 
 ### Exemple :
+
 ```
 CLIENT(id PK, nom, ville, age)
 COMMANDE(id PK, client_id FK, date)
@@ -117,6 +123,7 @@ transition: slide-left
 # 🟧 UML pour les bases de données
 
 UML utilise :
+
 - **Classes** = tables  
 - **Attributs** = colonnes  
 - **Associations** = relations  
@@ -169,6 +176,7 @@ transition: slide-left
 ### (Créer et structurer)
 
 Commandes principales :
+
 - **CREATE TABLE**  
 - **ALTER TABLE**  
 - **DROP TABLE**  
@@ -207,6 +215,7 @@ transition: slide-left
 ## Pourquoi ? Pour garantir la qualité des données
 
 ### Types :
+
 - **PRIMARY KEY**
 - **FOREIGN KEY**
 - **UNIQUE**
@@ -261,11 +270,13 @@ transition: slide-left
 # 🟪 Index — Pourquoi ?
 
 ### Avantages :
+
 - Accélère les recherches  
 - Accélère les JOIN  
 - Accélère les filtres avec WHERE
 
 ### Inconvénients :
+
 - Plus de stockage  
 - Plus lent en insertion  
 
@@ -301,12 +312,14 @@ transition: slide-left
 # 🟫 ALTER TABLE — Modifier une table
 
 ### Ajouter une colonne :
+
 ```sql
 ALTER TABLE clients
 ADD COLUMN telephone TEXT;
 ```
 
 ### Renommer une colonne (SQLite) :
+
 ```sql
 ALTER TABLE clients
 RENAME COLUMN ville TO localisation;
@@ -339,12 +352,14 @@ transition: slide-left
 # Atelier : Créer votre MCD
 
 Créer le MCD d’une application simple :
+
 - Utilisateurs  
 - Projets  
 - Tâches  
 - Commentaires  
 
 Objectifs :
+
 - Entités  
 - Attributs  
 - Cardinalités  
