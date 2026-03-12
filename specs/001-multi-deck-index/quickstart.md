@@ -23,7 +23,7 @@
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd slidev-simplon-sql-1st-day
+cd slidev-decks-simplon
 
 # Install dependencies
 npm install

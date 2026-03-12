@@ -1,12 +1,12 @@
 {
-  "name": "slidev-simplon-sql-training",
+  "name": "slidev-decks-simplon",
   "version": "1.0.0",
   "description": "Multi-deck Slidev presentation project for SQL training with Simplon branding",
   "type": "module",
   "keywords": [
     "slidev",
     "presentations",
-    "sql",
+    "decks",
     "training",
     "simplon",
     "education"
@@ -21,6 +21,7 @@
     "test": "vitest",
     "generate-index": "./scripts/generate-index.sh",
     "generate-covers": "node scripts/generate-covers.js",
+    "build": "node scripts/build.js",
     "build:decks": "slidev build decks/*/slides.md --base /decks/ --out dist/decks",
     "build:index": "bunx slidev build index/slides.md --out dist --base /",
     "build:all": "bun run generate-index && bun run build:decks && bun run build:index",

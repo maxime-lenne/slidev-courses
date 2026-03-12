@@ -98,7 +98,7 @@ Présentation complète testant **TOUTES** les fonctionnalités Slidev.
 **Pour tester:**
 
 ```bash
-cd /Users/maxime-lenne/Documents_Non_iCloud/workspace_js_ts/slidev-simplon-sql-1st-day
+cd /Users/maxime-lenne/Documents_Non_iCloud/workspace_js_ts/slidev-decks-simplon
 npx slidev decks/theme-demo/test-complete.md
 ```
 

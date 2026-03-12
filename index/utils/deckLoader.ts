@@ -33,7 +33,7 @@ export interface IndexData {
 
 export async function loadIndexData(): Promise<IndexData> {
   try {
-    const response = await fetch('/index-data.json')
+    const response = await fetch(import.meta.env.BASE_URL + 'index-data.json')
 
     if (!response.ok) {
       throw new Error(`Failed to load index data: ${response.statusText}`)
@@ -55,7 +55,7 @@ async function getDeckPorts(): Promise<Record<string, number>> {
   if (deckPortsCache) return deckPortsCache
 
   try {
-    const response = await fetch('/deck-ports.json')
+    const response = await fetch(import.meta.env.BASE_URL + 'deck-ports.json')
     if (response.ok) {
       deckPortsCache = await response.json()
       return deckPortsCache!
@@ -76,12 +76,11 @@ export async function getDeckUrl(deckId: string): Promise<string> {
     }
   }
 
-  // In production, use relative path
-  return `/decks/${deckId}/`
+  // In production, use base-relative path
+  return `${import.meta.env.BASE_URL}decks/${deckId}/`
 }
 
 export function getThumbnailUrl(deckId: string, thumbnailPath: string): string {
-  // Thumbnails use proxied path (works in both dev and production)
   const cleanPath = thumbnailPath.replace('./', '')
-  return `/decks/${deckId}/${cleanPath}`
+  return `${import.meta.env.BASE_URL}decks/${deckId}/${cleanPath}`
 }
