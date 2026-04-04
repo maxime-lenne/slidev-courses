@@ -51,6 +51,7 @@ echo ""
 # Create directory structure
 echo "Creating directory structure..."
 mkdir -p "${DECK_DIR}/assets"
+mkdir -p "${DECK_DIR}/sources"
 
 # Copy and process slides.md template
 echo "Generating slides.md..."
@@ -70,16 +71,16 @@ sed -e "s/{{DECK_ID}}/${DECK_ID}/g" \
     -e "s/{{DATE}}/${DATE}/g" \
     "${SCRIPT_DIR}/templates/meta.json.template" > "${DECK_DIR}/meta.json"
 
-# Create placeholder thumbnail (SVG)
-echo "Creating placeholder thumbnail..."
-cat > "${DECK_DIR}/assets/preview.svg" << 'EOF'
+# Create placeholder cover (SVG, will be replaced with Unsplash image during planning)
+echo "Creating placeholder cover..."
+cat > "${DECK_DIR}/assets/cover.svg" << 'EOF'
 <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
   <rect width="400" height="300" fill="#123744"/>
   <text x="200" y="150" font-family="Arial, sans-serif" font-size="24" fill="#f26f5c" text-anchor="middle">
-    Preview
+    Cover
   </text>
   <text x="200" y="180" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle">
-    Replace with actual thumbnail
+    Replace with Unsplash image (cover.png)
   </text>
 </svg>
 EOF
@@ -96,24 +97,35 @@ if [ -f "${SCRIPT_DIR}/validate-metadata.js" ]; then
 fi
 
 echo ""
-echo -e "${GREEN}✓ Deck created successfully!${NC}"
+echo -e "${GREEN}✓ Deck scaffolded successfully!${NC}"
 echo ""
-echo "Next steps:"
-echo "  1. Edit deck content:"
-echo "     ${DECK_DIR}/slides.md"
+echo "Structure created:"
+echo "  decks/${DECK_ID}/"
+echo "  ├── slides.md        ← slide content (generated from template)"
+echo "  ├── meta.json        ← metadata (fill completely during planning)"
+echo "  ├── assets/"
+echo "  │   └── cover.svg   ← placeholder — replace with cover.png from Unsplash"
+echo "  └── sources/         ← drop your source materials here before planning"
 echo ""
-echo "  2. Update metadata:"
-echo "     ${DECK_DIR}/meta.json"
+echo "Plan-first workflow:"
+echo "  1. Add source materials to: decks/${DECK_ID}/sources/"
+echo "     (briefs, notes, code samples, reference docs…)"
 echo ""
-echo "  3. Add a preview thumbnail (400x300px):"
-echo "     ${DECK_DIR}/assets/preview.png"
+echo "  2. Ask Claude to plan the deck:"
+echo "     'Plan the ${DECK_ID} deck' — Claude will:"
+echo "     - Read sources/ for content"
+echo "     - Search Unsplash for a cover → assets/cover.png"
+echo "     - Fill meta.json completely"
+echo "     - Write the plan to sources/${DECK_ID}-plan.md"
 echo ""
-echo "  4. Test your deck locally:"
+echo "  3. Review and validate the plan, then generate slides:"
+echo "     'Generate slides from the plan'"
+echo ""
+echo "  4. Test locally:"
 echo "     bun run dev -- ${DECK_ID}"
-echo "     or: bunx slidev ${DECK_DIR}/slides.md"
 echo ""
 echo "  5. When ready to publish:"
-echo "     - Change 'status' to 'published' in meta.json"
-echo "     - Run: bun run validate"
-echo "     - Commit and push to repository"
+echo "     - Set 'status' to 'published' in meta.json"
+echo "     - Run: bun run validate && bun run generate-index"
+echo "     - Commit and push"
 echo ""
