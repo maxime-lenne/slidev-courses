@@ -361,12 +361,13 @@ Créer le MCD d’une application simple de gestion de formation :
 - Commentaires  
 
 🧱 Règles métier (extraits)
- 1. Un commentaire doit toujours référencer une tâche et un auteur (apprenant).
- 2. Une tâche appartient à un unique projet.
- 3. Une participation lie un apprenant à un projet avec un rôle (et optionnellement un temps alloué).
- 4. La maîtrise d’une compétence par un apprenant est versionnée par date, niveau atteint, et validateur (formateur/tuteur).
- 5. Une tâche peut exiger plusieurs compétences avec un niveau attendu.
- 6. Un apprenant ne peut avoir qu’une entrée active de maîtrise d’une compétence donnée à une date donnée.
+
+1. Un commentaire doit toujours référencer une tâche et un auteur (apprenant).
+2. Une tâche appartient à un unique projet.
+3. Une participation lie un apprenant à un projet avec un rôle (et optionnellement un temps alloué).
+4. La maîtrise d’une compétence par un apprenant est versionnée par date, niveau atteint, et validateur (formateur/tuteur).
+5. Une tâche peut exiger plusieurs compétences avec un niveau attendu.
+6. Un apprenant ne peut avoir qu’une entrée active de maîtrise d’une compétence donnée à une date donnée.
 
 ---
 transition: slide-left

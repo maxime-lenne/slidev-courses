@@ -212,7 +212,6 @@ Image à gauche, contenu à droite
 - Meilleure attention
 - Contexte visuel
 
-
 ---
 layout: iframe-right
 url: https://sli.dev
