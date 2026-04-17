@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-16T23:16:30.090Z",
+  "generated": "2026-04-17T08:15:57.868Z",
   "version": "1.0.0",
   "decks": [
     {
@@ -65,7 +65,7 @@
         "Notions de REST et HTTP (verbes, codes de statut)",
         "Compréhension des bases de données relationnelles (SQL)"
       ],
-      "duration": "8 days",
+      "duration": "3 hours",
       "theme": "simplon",
       "thumbnail": "./assets/cover.png",
       "tags": [
@@ -280,8 +280,8 @@
     },
     {
       "id": "sql-mcd-mpd-schema-sql",
-      "title": "Modélisation & Schémas de Bases de Données / SQL",
-      "description": "Comprendre la modélisation conceptuelle & logique, lire et créer un MCD (Merise), lire et créer un diagramme UML de base, passer d’un modèle à un schéma SQL (DDL), comprendre les contraintes (PK, FK, UNIQUE, CHECK…), créer / modifier / supprimer des tables, comprendre les index et leurs impacts",
+      "title": "Modélisation & Schémas de BDD / SQL",
+      "description": "Comprendre la modélisation conceptuelle & logique, lire et créer des MCD (Merise), des diagramme UML de base, des schémas SQL (DDL), créer / modifier / supprimer des tables, des index, des contraintes (PK, FK, UNIQUE...)",
       "status": "published",
       "objectives": [
         "Comprendre la modélisation conceptuelle & logique",
@@ -360,7 +360,7 @@
   ],
   "stats": {
     "totalDecks": 9,
-    "totalDuration": 870,
+    "totalDuration": 1050,
     "languages": [
       "fr"
     ],
