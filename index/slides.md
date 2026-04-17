@@ -1,7 +1,8 @@
 ---
 theme: ../themes/maxime-lenne
-title: Formations SQL
-layout: default
+title: Formations
+layout: full
+aspectRatio: 16/10
 ---
 
 <IndexDashboard />

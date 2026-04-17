@@ -1,162 +1,161 @@
 <template>
-  <article class="deck-card">
-    <a :href="deckUrl" class="deck-card-link" @click.prevent="navigateToDeck">
-      <div class="deck-card-image">
-        <img :src="thumbnailUrl" :alt="`${deck.title} preview`" />
-      </div>
-      <div class="deck-card-content">
-        <h2 class="deck-card-title">{{ deck.title }}</h2>
-        <p class="deck-card-description">{{ deck.description }}</p>
-
-        <div class="deck-card-meta">
-          <span class="deck-card-duration">⏱️ {{ deck.duration }}</span>
-          <span class="deck-card-language">🌐 {{ deck.language.toUpperCase() }}</span>
-        </div>
-
-        <div class="deck-card-tags">
-          <span v-for="tag in deck.tags.slice(0, 5)" :key="tag" class="deck-card-tag">
-            {{ tag }}
-          </span>
-          <span v-if="deck.tags.length > 5" class="deck-card-tag deck-card-tag--more">
-            +{{ deck.tags.length - 5 }}
-          </span>
-        </div>
-      </div>
-    </a>
+  <article class="card-highlight" @click="navigateToDeck" :class="{ 'card-highlight--clickable': deckUrl !== '#' }">
+    <div class="card-highlight__icon">{{ deckIcon }}</div>
+    <h3 class="card-highlight__title">{{ deck.title }}</h3>
+    <div class="card-highlight__keywords">{{ deck.tags.slice(0, 3).join(', ') }}</div>
+    <p class="card-highlight__description">{{ deck.description }}</p>
+    <div class="card-highlight__features">
+      <span class="card-highlight__badge">⏱ {{ deck.duration }}</span>
+      <span class="card-highlight__badge">{{ deck.language.toUpperCase() }}</span>
+      <span v-if="deck.tags.length > 3" class="card-highlight__badge card-highlight__badge--more">
+        +{{ deck.tags.length - 3 }}
+      </span>
+    </div>
   </article>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import type { DeckMetadata } from '../utils/deckLoader'
-import { getDeckUrl, getThumbnailUrl } from '../utils/deckLoader'
+import { getDeckUrl } from '../utils/deckLoader'
 
 interface Props {
   deck: DeckMetadata
 }
 
 const props = defineProps<Props>()
-
 const deckUrl = ref<string>('#')
-const thumbnailUrl = computed(() => getThumbnailUrl(props.deck.id, props.deck.thumbnail))
 
-// Load deck URL asynchronously
 onMounted(async () => {
   deckUrl.value = await getDeckUrl(props.deck.id)
 })
 
-// Force full page navigation to avoid Vite trying to resolve Slidev modules
+const ICON_MAP: Record<string, string> = {
+  sql: '🗃️', database: '🗃️', postgresql: '🗃️', mysql: '🗃️',
+  python: '🐍',
+  langchain: '🤖', ai: '🤖', 'machine learning': '🤖', genai: '🤖', llm: '🤖',
+  javascript: '💻', typescript: '💻', vue: '💻', react: '💻',
+  git: '🌿', github: '🌿',
+  docker: '🐳', devops: '🐳',
+  html: '🌐', css: '🎨',
+}
+
+const deckIcon = computed(() => {
+  const tags = props.deck.tags.map(t => t.toLowerCase())
+  for (const [key, icon] of Object.entries(ICON_MAP)) {
+    if (tags.some(t => t.includes(key))) return icon
+  }
+  return '📊'
+})
+
 function navigateToDeck(event: MouseEvent) {
   if (deckUrl.value === '#') return
-
-  // Allow Ctrl/Cmd+Click to open in new tab
   if (event.ctrlKey || event.metaKey) {
     window.open(deckUrl.value, '_blank')
   } else {
-    // Force full page reload
     window.location.href = deckUrl.value
   }
 }
 </script>
 
 <style scoped>
-.deck-card {
-  background: white;
+/* ── card-highlight — replicates maxime-lenne.fr ───────── */
+
+.card-highlight {
+  position: relative;
+  background: var(--ml-surface, #ffffff);
+  border: 1px solid var(--ml-border, #e2e8f0);
   border-radius: 12px;
+  padding: 2rem 1.75rem;
+  text-align: center;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform var(--ml-transition-normal, 250ms ease-in-out),
+              box-shadow var(--ml-transition-normal, 250ms ease-in-out),
+              border-color var(--ml-transition-normal, 250ms ease-in-out);
 }
 
-.deck-card:hover {
+/* 4px gradient top border — exact replica of card-highlight::before */
+.card-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--ml-gradient-primary, linear-gradient(135deg, #2563eb 0%, #10b981 100%));
+  border-radius: 12px 12px 0 0;
+}
+
+.card-highlight--clickable {
+  cursor: pointer;
+}
+
+.card-highlight--clickable:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ml-shadow-xl, 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1));
+  border-color: var(--ml-border-hover, #cbd5e1);
 }
 
-.deck-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+/* ── Content ─────────────────────────────────────────────── */
+
+.card-highlight__icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  filter: grayscale(0.1);
 }
 
-.deck-card-image {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: #f3f4f6;
-}
-
-.deck-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.deck-card-content {
-  padding: 1.5rem;
-}
-
-.deck-card-title {
-  font-size: 1.5rem;
+.card-highlight__title {
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: #123744;
+  /* gradient text applied by theme's colors.css */
+  background: var(--ml-gradient-text, linear-gradient(135deg, #2563eb 0%, #10b981 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
 }
 
-.deck-card-description {
-  font-size: 0.95rem;
-  color: #64748b;
-  line-height: 1.5;
-  margin: 0 0 1rem 0;
+.card-highlight__keywords {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ml-text-secondary, #64748b);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
 }
 
-.deck-card-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.card-highlight__description {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--ml-text-secondary, #64748b);
+  line-height: 1.55;
+  margin: 0 0 1.25rem 0;
 }
 
-.deck-card-duration,
-.deck-card-language {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
+/* ── Badges ──────────────────────────────────────────────── */
 
-.deck-card-tags {
+.card-highlight__features {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: center;
 }
 
-.deck-card-tag {
-  display: inline-block;
+.card-highlight__badge {
+  display: inline-flex;
+  align-items: center;
   padding: 0.25rem 0.75rem;
-  background: #e0e7ff;
-  color: #4338ca;
-  border-radius: 999px;
+  background: var(--ml-background-alt, #f8fafc);
+  color: var(--ml-text-secondary, #64748b);
+  border: 1px solid var(--ml-border, #e2e8f0);
+  border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
-.deck-card-tag--more {
-  background: #f1f5f9;
-  color: #64748b;
-}
-
-@media (max-width: 768px) {
-  .deck-card-content {
-    padding: 1rem;
-  }
-
-  .deck-card-title {
-    font-size: 1.25rem;
-  }
-
-  .deck-card-image {
-    height: 150px;
-  }
+.card-highlight__badge--more {
+  background: var(--ml-neutral-100, #f1f5f9);
+  color: var(--ml-text-tertiary, #94a3b8);
 }
 </style>
