@@ -1,28 +1,39 @@
 <template>
-  <article class="deck-card">
-    <a :href="deckUrl" class="deck-card-link" @click.prevent="navigateToDeck">
-      <div class="deck-card-image">
-        <img :src="thumbnailUrl" :alt="`${deck.title} preview`" />
-      </div>
-      <div class="deck-card-content">
-        <h2 class="deck-card-title">{{ deck.title }}</h2>
-        <p class="deck-card-description">{{ deck.description }}</p>
+  <article class="card-highlight" @click="navigateToDeck" :class="{ 'card-highlight--clickable': deckUrl !== '#' }">
 
-        <div class="deck-card-meta">
-          <span class="deck-card-duration">⏱️ {{ deck.duration }}</span>
-          <span class="deck-card-language">🌐 {{ deck.language.toUpperCase() }}</span>
-        </div>
+    <!-- Image with #1e293b overlay that fades on hover -->
+    <div class="card-highlight__image">
+      <img
+        :src="thumbnailUrl"
+        :alt="`${deck.title} preview`"
+        @error="onImageError"
+        :class="{ 'card-highlight__image-hidden': imgError }"
+      />
+      <div v-if="imgError" class="card-highlight__image-fallback" />
+      <div class="card-highlight__image-overlay" />
+    </div>
 
-        <div class="deck-card-tags">
-          <span v-for="tag in deck.tags.slice(0, 5)" :key="tag" class="deck-card-tag">
-            {{ tag }}
-          </span>
-          <span v-if="deck.tags.length > 5" class="deck-card-tag deck-card-tag--more">
-            +{{ deck.tags.length - 5 }}
-          </span>
-        </div>
-      </div>
-    </a>
+    <!-- Title -->
+    <h3 class="card-highlight__title">{{ deck.title }}</h3>
+
+    <!-- Meta — cta-info__item style -->
+    <div class="card-info">
+      <span class="card-info__item">⏱ {{ deck.duration }}</span>
+      <span class="card-info__separator">•</span>
+      <span class="card-info__item">🌐 {{ deck.language.toUpperCase() }}</span>
+    </div>
+
+    <!-- Description -->
+    <p class="card-highlight__description">{{ deck.description }}</p>
+
+    <!-- Tags — deep-stack-services__badge style -->
+    <div class="card-highlight__features">
+      <span v-for="tag in deck.tags.slice(0, 4)" :key="tag" class="card-highlight__tag">{{ tag }}</span>
+      <span v-if="deck.tags.length > 4" class="card-highlight__tag card-highlight__tag--more">
+        +{{ deck.tags.length - 4 }}
+      </span>
+    </div>
+
   </article>
 </template>
 
@@ -36,127 +47,201 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
 const deckUrl = ref<string>('#')
+const imgError = ref(false)
+
 const thumbnailUrl = computed(() => getThumbnailUrl(props.deck.id, props.deck.thumbnail))
 
-// Load deck URL asynchronously
 onMounted(async () => {
   deckUrl.value = await getDeckUrl(props.deck.id)
 })
 
-// Force full page navigation to avoid Vite trying to resolve Slidev modules
+function onImageError() {
+  imgError.value = true
+}
+
 function navigateToDeck(event: MouseEvent) {
   if (deckUrl.value === '#') return
-
-  // Allow Ctrl/Cmd+Click to open in new tab
   if (event.ctrlKey || event.metaKey) {
     window.open(deckUrl.value, '_blank')
   } else {
-    // Force full page reload
     window.location.href = deckUrl.value
   }
 }
 </script>
 
 <style scoped>
-.deck-card {
-  background: white;
-  border-radius: 12px;
+/* ─── card-highlight — exact replica of maxime-lenne.fr ───── */
+
+.card-highlight {
+  position: relative;
+  background: var(--ml-surface, #ffffff);
+  border: 1px solid var(--ml-border, #e2e8f0);
+  border-radius: 20px;
+  padding: 0;           /* image flush to top, content has its own padding */
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.deck-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+/* Dark mode — matches site's computed rgb(30,41,59) = #1e293b */
+:global(html.dark) .card-highlight {
+  background: #1e293b;
+  border-color: #334155;
 }
 
-.deck-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+/* 1px centred gradient line that fades in on hover — exact site behaviour */
+.card-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.3) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
 }
 
-.deck-card-image {
+.card-highlight--clickable { cursor: pointer; }
+
+.card-highlight--clickable:hover {
+  transform: translateY(-8px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+:global(html.dark) .card-highlight--clickable:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 20px 40px;
+}
+
+.card-highlight--clickable:hover::before { opacity: 1; }
+
+/* ─── Image with #1e293b overlay ─────────────────────────── */
+
+.card-highlight__image {
+  position: relative;
   width: 100%;
-  height: 200px;
+  height: 160px;
   overflow: hidden;
-  background: #f3f4f6;
+  border-radius: 20px 20px 0 0;
 }
 
-.deck-card-image img {
+.card-highlight__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.deck-card-content {
-  padding: 1.5rem;
+.card-highlight__image-hidden { visibility: hidden; }
+
+/* Gradient fallback when no thumbnail */
+.card-highlight__image-fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--ml-color-primary, #2563eb) 0%, var(--ml-color-secondary, #10b981) 100%);
 }
 
-.deck-card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  color: #123744;
+/* Opaque #1e293b overlay — disappears on hover */
+.card-highlight__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 41, 59, 0.82);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.deck-card-description {
-  font-size: 0.95rem;
-  color: #64748b;
-  line-height: 1.5;
-  margin: 0 0 1rem 0;
+.card-highlight--clickable:hover .card-highlight__image-overlay { opacity: 0; }
+.card-highlight--clickable:hover .card-highlight__image img { transform: scale(1.05); }
+
+/* ─── Content area ───────────────────────────────────────── */
+
+.card-highlight__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ml-text-primary, #0f172a);
+  margin: 1.25rem 1.5rem 0.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  /* no gradient — matches site */
+  background: none;
+  -webkit-text-fill-color: unset;
 }
 
-.deck-card-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-  color: #64748b;
-}
+/* ─── Meta — cta-info style ──────────────────────────────── */
 
-.deck-card-duration,
-.deck-card-language {
+.card-info {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ml-text-tertiary, #94a3b8);
+  margin: 0.4rem 1.5rem 0;
 }
 
-.deck-card-tags {
+.card-info__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-info__separator {
+  opacity: 0.5;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ─── Description ────────────────────────────────────────── */
+
+.card-highlight__description {
+  font-size: 0.825rem;
+  line-height: 1.6;
+  color: var(--ml-text-secondary, #64748b);
+  margin: 0.6rem 1.5rem 0;
+}
+
+/* ─── Tags — deep-stack-services__badge style ────────────── */
+
+.card-highlight__features {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 8px;
+  justify-content: center;
+  padding: 1rem 1.5rem 1.5rem;
+  margin-top: 0.75rem;
 }
 
-.deck-card-tag {
-  display: inline-block;
+.card-highlight__tag {
+  display: inline-flex;
+  align-items: center;
   padding: 0.25rem 0.75rem;
-  background: #e0e7ff;
-  color: #4338ca;
-  border-radius: 999px;
+  background: var(--ml-background-alt, #f8fafc);
+  color: var(--ml-text-secondary, #64748b);
+  border: 1px solid var(--ml-border, #e2e8f0);
+  border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  transition: background 0.2s;
 }
 
-.deck-card-tag--more {
-  background: #f1f5f9;
-  color: #64748b;
+:global(html.dark) .card-highlight__tag {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--ml-color-primary-dark, #3b82f6);
 }
 
-@media (max-width: 768px) {
-  .deck-card-content {
-    padding: 1rem;
-  }
+.card-highlight__tag--more {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--ml-text-tertiary, #94a3b8);
+}
 
-  .deck-card-title {
-    font-size: 1.25rem;
-  }
-
-  .deck-card-image {
-    height: 150px;
-  }
+.card-highlight--clickable:hover .card-highlight__tag {
+  background: rgba(37, 99, 235, 0.14);
 }
 </style>

@@ -20,8 +20,9 @@ Encadré d'objectif pédagogique avec icône 🎯, bordure accent et support dar
   **Comprendre les composants communs du thème**
 
   À la fin de cette slide vous saurez :
-  - utiliser `<LearningObjective>` pour afficher un objectif pédagogique
-  - passer du contenu riche (listes, gras) via le slot
+
+- utiliser `<LearningObjective>` pour afficher un objectif pédagogique
+- passer du contenu riche (listes, gras) via le slot
 </LearningObjective>
 
 ```html
@@ -41,12 +42,14 @@ Encadré d'objectif pédagogique avec icône 🎯, bordure accent et support dar
 Carte d'exercice avec badge difficulté coloré et durée estimée.
 
 **Props :**
+
 - `difficulty?: 'beginner' | 'intermediate' | 'advanced'`
 - `duration?: string`
 
 <ExerciseCard difficulty="intermediate" duration="20 min">
 
   Implémentez une chaîne LCEL qui :
+
   1. Prend une question en entrée
   2. Appelle un `ChatPromptTemplate`
   3. Passe la réponse à un `StrOutputParser`
@@ -71,6 +74,7 @@ Carte d'exercice avec badge difficulté coloré et durée estimée.
 Wrapper de bloc de code avec titre dans le header et bouton **copier**.
 
 **Props :**
+
 - `title?: string` — titre affiché dans le header
 - `lang?: string` — hint de langage (non utilisé directement, pour documentation)
 

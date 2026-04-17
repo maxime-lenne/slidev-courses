@@ -207,7 +207,7 @@ layout: two-cols
 
 ## Image avec attributs
 
-<img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300" class="rounded-xl" />
+<img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300" class="rounded-xl" alt="Code on a screen" />
 
 ---
 
